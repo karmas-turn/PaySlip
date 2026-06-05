@@ -1,0 +1,10 @@
+.but2{
+  -fx-text-fill: white;
+}
+
+.goback{
+  -fx-text-fill: blue;
+}
+.sidebar{
+  -fx-background-color: linear-gradient(to bottom, #3a28ff,#14088d);
+}

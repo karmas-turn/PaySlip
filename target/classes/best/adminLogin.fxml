@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="best.AdminLoginController">
+   <children>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <AnchorPane prefHeight="510.0" prefWidth="640.0">
+               <children>
+                  <AnchorPane layoutX="116.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="346.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3),10,0,0,4); -fx-background-radius: 20px;">
+                     <children>
+                        <Text layoutX="67.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back, Admin" wrappingWidth="221.84375">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="87.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login to access your dashboard " />
+                        <Label layoutX="29.0" layoutY="131.0" text="Email address" AnchorPane.leftAnchor="30.0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="29.0" layoutY="161.0" prefHeight="34.0" prefWidth="296.0" promptText="Enter email" AnchorPane.leftAnchor="30.0" />
+                        <Label layoutX="36.0" layoutY="207.0" text="Password" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="30.0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <PasswordField layoutX="30.0" layoutY="235.0" prefHeight="34.0" prefWidth="296.0" promptText="Enter password" AnchorPane.leftAnchor="30.0" />
+                        <Button layoutX="30.0" layoutY="286.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="296.0" style="-fx-background-color: blue; -fx-border-color: blue; -fx-border-radius: 5px;" styleClass="but2" stylesheets="@login.css" text="Login " textFill="#f8f7ff" AnchorPane.leftAnchor="30.0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <DropShadow radius="4.87" width="0.48" />
+                           </effect>
+                        </Button>
+                        <Button layoutX="56.0" layoutY="344.0" mnemonicParsing="false" onAction="#GoBack" prefHeight="34.0" prefWidth="244.0" style="-fx-background-color: none; -fx-border-radius: 5px;" styleClass="goback" stylesheets="@login.css" text="Go Back" textFill="#2b17c3">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <FontIcon iconColor="BLUE" iconLiteral="fas-arrow-left" iconSize="16" />
+                           </graphic>
+                        </Button>
+                        <Text fill="BLUE" layoutX="56.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip" wrappingWidth="110.84375" AnchorPane.topAnchor="18.576171875">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <FontIcon iconColor="BLUE" iconLiteral="fas-money-bill" iconSize="16" layoutX="30.0" layoutY="37.0" AnchorPane.topAnchor="22.65625" />
+                     </children>
+                  </AnchorPane>
+                  <FontIcon iconColor="BLUE" iconLiteral="fas-leaf" iconSize="64" layoutX="27.0" layoutY="149.0" opacity="0.16" />
+                  <FontIcon iconColor="BLUE" iconLiteral="fas-leaf" iconSize="64" layoutX="509.0" layoutY="94.0" opacity="0.16" />
+                  <FontIcon iconColor="GOLD" iconLiteral="fas-coins" iconSize="32" layoutX="43.0" layoutY="311.0" opacity="0.25" />
+                  <FontIcon iconColor="GOLD" iconLiteral="fas-coins" iconSize="32" layoutX="506.0" layoutY="344.0" opacity="0.25" />
+                  <FontIcon iconColor="GOLD" iconLiteral="fas-coins" iconSize="32" layoutX="490.0" layoutY="178.0" opacity="0.25" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</VBox>

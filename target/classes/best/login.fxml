@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="best.loginController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="308.0">
+         <children>
+            <AnchorPane layoutX="-6.0" prefHeight="500.0" prefWidth="451.0">
+               <children>
+                  <Text layoutX="73.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simple Payroll " wrappingWidth="244.076171875" AnchorPane.leftAnchor="73.0">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="BLUE" layoutX="73.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Management System" wrappingWidth="280.076171875">
+                     <font>
+                        <Font name="Arial Black" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="73.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage employee salaries, deductions and reports efficiently." wrappingWidth="280.076171875">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="73.0" layoutY="312.0" mnemonicParsing="false" onAction="#GoAdmin" prefHeight="34.0" prefWidth="244.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" styleClass="but1" stylesheets="@login.css" text="Login as Admin" textFill="#f5f4f4">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fas-user" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="73.0" layoutY="368.0" mnemonicParsing="false" onAction="#GoEmp" prefHeight="34.0" prefWidth="244.0" style="-fx-background-color: white; -fx-border-color: blue; -fx-border-radius: 5px;" styleClass="but1" stylesheets="@login.css" text="Login as Employee" textFill="BLUE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontIcon iconColor="BLUE" iconLiteral="fas-user" selectionFill="#2929b9" />
+                     </graphic>
+                  </Button>
+                  <Text fill="BLUE" layoutX="119.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip System">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Text>
+                  <FontIcon iconColor="BLUE" iconLiteral="fas-money-bill-alt" iconSize="24" layoutX="82.0" layoutY="155.0" wrappingWidth="29.5" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="405.0" layoutY="-1.0" prefHeight="500.0" prefWidth="492.0">
+               <children>
+                  <FontIcon iconColor="BLUE" iconLiteral="fas-clipboard-list" iconSize="300" layoutX="101.0" layoutY="374.0" opacity="0.58" wrappingWidth="40.0" />
+                  <FontIcon iconColor="GREY" iconLiteral="fas-calculator" iconSize="128" layoutX="325.0" layoutY="393.0" text="" />
+                  <FontIcon iconColor="GOLD" iconLiteral="fas-coins" iconSize="64" layoutX="261.0" layoutY="402.0" text="" />
+                  <FontIcon iconColor="GOLD" iconLiteral="fas-coins" iconSize="64" layoutX="169.0" layoutY="402.0" text="" />
+                  <FontIcon iconColor="GOLD" iconLiteral="fas-coins" iconSize="64" layoutX="214.0" layoutY="402.0" text="" />
+                  <FontIcon iconColor="#111190" iconLiteral="fas-seedling" iconSize="64" layoutX="14.0" layoutY="467.0" opacity="0.23" text="" />
+                  <FontIcon fill="#5e1010" iconColor="#111190" iconLiteral="fas-leaf" iconSize="64" layoutX="373.0" layoutY="95.0" opacity="0.18" text="" />
+                  <FontIcon fill="#5e1010" iconColor="#111190" iconLiteral="fas-leaf" iconSize="64" layoutX="405.0" layoutY="467.0" opacity="0.14" text="" />
+             
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
