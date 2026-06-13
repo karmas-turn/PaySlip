@@ -56,7 +56,7 @@ public class EmpLoginController {
                 alert.setHeaderText(null);
                 alert.setContentText("Successfully login");
                 alert.showAndWait();
-                App.setRoot("adminDashboard");
+                App.setRoot("employeeDashboard");
 
                 } else {
                     alert = new Alert(AlertType.ERROR);
@@ -69,7 +69,7 @@ public class EmpLoginController {
             }
 
         } catch (Exception e) {
-            // TODO: handle exception
+           
         }
 
     }

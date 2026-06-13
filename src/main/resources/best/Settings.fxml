@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="best.adminDashboardController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="200.0" style="-fx-background-radius: 0 10 10  0;" styleClass="sidebar" stylesheets="@login.css">
+         <children>
+            <Text fill="WHITE" layoutX="59.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Text>
+            <FontIcon iconColor="WHITE" iconLiteral="fas-money-bill" iconSize="24" layoutX="14.0" layoutY="48.0" />
+            <Button alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="121.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-home" />
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Employees" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-users" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="7.0" layoutX="10.0" layoutY="225.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Employee Directory" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-users" iconSize="16" text="" />
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="7.0" layoutX="10.0" layoutY="272.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="PaySlip" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-receipt" iconSize="16" />
+               </graphic>
+            </Button>
+            <Button graphicTextGap="6.0" layoutX="10.0" layoutY="438.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: none;" text="Log Out" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-sign-out-alt" />
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Reports" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-chart-bar" />
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="374.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Settings" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-cog" />
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="201.0" layoutY="4.0" prefHeight="106.0" prefWidth="512.0" style="-fx-background-radius: 0 10 10 0; -fx-background-color: white;" stylesheets="@login.css">
+         <children>
+            <Text fill="#16034a" layoutX="20.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" wrappingWidth="137.103515625">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#616161" layoutX="20.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings / Profile" wrappingWidth="137.103515625" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane id="but2" layoutX="404.0" layoutY="121.0" prefHeight="371.0" prefWidth="311.0" style="-fx-background-color: white; -fx-background-radius: 10 10 10 10;" styleClass="but2" stylesheets="@login.css">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Text fill="#16034a" layoutX="32.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Information">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="32.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" wrappingWidth="72.443359375" />
+            <Text layoutX="32.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="125.32421875" />
+            <Text layoutX="32.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" wrappingWidth="81.10351562500003" />
+            <Button layoutX="32.0" layoutY="293.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="206.0" style="-fx-background-color: blue;" stylesheets="@login.css" text="Update Profile" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField layoutX="32.0" layoutY="82.0" prefHeight="35.0" prefWidth="266.0" text="Admin User">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="32.0" layoutY="156.0" prefHeight="35.0" prefWidth="266.0" text="admin@payslip.com">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="32.0" layoutY="230.0" prefHeight="35.0" prefWidth="266.0" text="0241234567">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
+      <Button layoutX="221.0" layoutY="150.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white;" text="Profile" textFill="#16034a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <FontIcon layoutX="232.0" layoutY="184.0" wrappingWidth="38.0" />
+      <Button layoutX="221.0" layoutY="233.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white;" text="Change Password" textFill="#16034a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <FontIcon layoutX="227.0" layoutY="267.0" wrappingWidth="18.0" />
+      <Button layoutX="221.0" layoutY="307.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white;" text="System Settings" textFill="#16034a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <FontIcon layoutX="228.0" layoutY="343.0" wrappingWidth="18.0" />
+   </children>
+</AnchorPane>

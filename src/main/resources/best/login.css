@@ -6,5 +6,31 @@
   -fx-text-fill: blue;
 }
 .sidebar{
+  background-color: linear-gradient(to bottom, #3a28ff,#14088d);
   -fx-background-color: linear-gradient(to bottom, #3a28ff,#14088d);
+}
+
+.table-view{
+  background-color: transparent;
+  -fx-background-color: transparent;
+  border-color: #3a28ff;
+  -fx-border-color: linear-gradient(to bottom, #3a28ff,#14088d);
+  
+}
+
+.table-view .column-header-background{
+  background-color: blue;
+  -fx-background-color:linear-gradient(to right, #3a28ff,#2d1b91,#14088d);
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+}
+.table-view .column-header, .table-view .filler{
+  -fx-background-color: transparent;
+  -fx-size: 45px;
+}
+
+.table-view .column-header .label{
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
 }

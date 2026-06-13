@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="best.employeeDashboardController">
+   <children>
+      <AnchorPane prefHeight="519.0" prefWidth="200.0" style="-fx-background-radius: 0 10 10  0; -fx-background-color: blue;" styleClass="sidebar" stylesheets="@login.css">
+         <children>
+            <Text fill="WHITE" layoutX="59.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Text>
+            <FontIcon iconColor="WHITE" iconLiteral="fas-money-bill" iconSize="24" layoutX="14.0" layoutY="48.0" />
+            <Button fx:id="homeBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Dashboard" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-home" />
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="paybtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="My PaySlip" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-receipt" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="profileBtn" alignment="CENTER" graphicTextGap="7.0" layoutX="10.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Profile" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-user" iconSize="16" />
+               </graphic>
+            </Button>
+            <Button graphicTextGap="6.0" layoutX="10.0" layoutY="438.0" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: none;" text="Log Out" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-sign-out-alt" />
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="payslipforms" layoutX="218.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="768.0" style="-fx-background-radius: 20px; -fx-background-color: white;">
+         <effect>
+            <DropShadow radius="10.7325" width="23.93" />
+         </effect>
+         <children>
+            <Text layoutX="25.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My PaySlip ">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payslip / Review" />
+            <AnchorPane layoutX="385.0" layoutY="243.0" prefHeight="175.0" prefWidth="365.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 10px;">
+               <children>
+                  <Text layoutX="28.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tax">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#020b16" layoutX="29.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SSNIT" wrappingWidth="51.591796875">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="26.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Other Deductions" wrappingWidth="101.41650390625">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#e42f1b" layoutX="26.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Deductions" wrappingWidth="109.10986328124989">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <AnchorPane layoutX="-1.0" layoutY="-5.0" prefHeight="57.0" prefWidth="365.0" style="-fx-background-color: #F5F5F5;; -fx-background-radius: 10px;">
+                     <children>
+                        <Text fill="#e21010" layoutX="25.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deductions">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="25.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="253.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount (GHS)">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <Text layoutX="305.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="300">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
+                  <Text layoutX="305.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
+                  <Text layoutX="304.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="300">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
+                  <Text fill="#e61a1a" layoutX="305.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="850">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+               </children></AnchorPane>
+            <Button layoutX="156.0" layoutY="438.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #FAFAFA; -fx-border-color: blue; -fx-background-radius: 5px;" text="   Print PaySlip" textFill="#0a07ed">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="394.0" layoutY="440.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="208.0" style="-fx-background-color: BLUE;" text="    Download PDF" textFill="#fbf9f9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <AnchorPane layoutX="416.0" layoutY="57.0" prefHeight="104.0" prefWidth="333.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 10px;">
+               <children>
+                  <Text layoutX="26.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Total Earnings">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="26.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Total Deductions">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="229.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GHS 385">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="226.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" GHS 3,850">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="18.0" layoutY="244.0" prefHeight="173.0" prefWidth="358.0" style="-fx-background-radius: 10px; -fx-background-color: #FAFAFA;;">
+               <children>
+                  <Text layoutX="18.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Basic Salary">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="18.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transport">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#04c055" layoutX="14.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total earnings">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="18.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allowance" wrappingWidth="66.39013671875">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <AnchorPane layoutY="-6.0" prefHeight="57.0" prefWidth="357.0" style="-fx-background-color: #F5F5F5;; -fx-background-radius: 10px;">
+                     <children>
+                        <Text layoutX="17.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#20c35f" layoutX="19.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Earnings" wrappingWidth="66.39013671875">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="228.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount (GHS)">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <Text layoutX="275.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3,000">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
+                  <Text layoutX="284.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="500">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
+                  <Text layoutX="284.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="350">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
+                  <Text fill="#13ae3f" layoutX="274.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3,850">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="416.0" layoutY="168.0" prefHeight="36.0" prefWidth="333.0" style="-fx-background-color: #c8defd; -fx-background-radius: 5px;">
+               <children>
+                  <Text fill="#1732e5" layoutX="31.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Pay">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#293af4" layoutX="229.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GHS 3,000">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <FontIcon fill="#0911f4" iconLiteral="fas-print" layoutX="200.0" layoutY="459.0" wrappingWidth="14.134536873302636" />
+            <FontIcon fill="#f4efef" iconLiteral="fas-download" layoutX="438.0" layoutY="458.0" wrappingWidth="12.66668701171875" />
+            <AnchorPane layoutX="9.0" layoutY="70.0" prefHeight="141.0" prefWidth="342.0">
+               <children>
+                  <Text layoutX="35.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="35.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="34.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="35.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="35.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="191.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": EMP001">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="191.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": Ama Mensah">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="191.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": Human Resourses">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="191.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": HR Officer">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
