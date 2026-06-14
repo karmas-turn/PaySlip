@@ -9,7 +9,7 @@ public class database {
     try  {
       Class.forName("com.mysql.jdbc.Driver");
 
-      Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/payslip", "root", "");
+      Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/payslip_db", "root", "");
         return connect;
     } catch (Exception e) {
       e.printStackTrace();

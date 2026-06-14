@@ -32,7 +32,7 @@ public class EmpLoginController {
     private ResultSet result;
 
     public void loginEmp(){
-        String sql = "SELECT * FROM admin WHERE email = ? and password = ?";
+        String sql = "SELECT * FROM employees WHERE email = ? and password = ? ";
         connect = database.connectdb();
 
         try  {
@@ -51,6 +51,7 @@ public class EmpLoginController {
             }
             else{
                 if (result.next()) {
+                getData.username = email.getText();
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);

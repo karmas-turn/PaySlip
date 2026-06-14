@@ -33,7 +33,7 @@ public class AdminLoginController {
     private ResultSet result;
 
     public void loginAd(){
-        String sql = "SELECT * FROM admin WHERE email = ? and password = ?";
+        String sql = "SELECT * FROM admins WHERE email = ? and password = ?";
         connect = database.connectdb();
 
         try  {

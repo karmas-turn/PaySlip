@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f0f0" height="137.0" layoutX="95.0" layoutY="63.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.1" width="506.0" />
+      <DatePicker layoutX="245.0" layoutY="114.0" opacity="0.47" prefHeight="26.0" prefWidth="101.0" showWeekNumbers="true" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#023b71" height="400.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="95.0" />
+      <Text layoutX="106.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports   " wrappingWidth="95.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="106.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports / Overview" wrappingWidth="116.5367431640625" />
+      <Text layoutX="106.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report Type" wrappingWidth="95.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="240.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From Date" wrappingWidth="95.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="357.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To Date" wrappingWidth="95.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <MenuButton alignment="CENTER" blendMode="MULTIPLY" cache="true" contentDisplay="TOP" layoutX="104.0" layoutY="114.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #FAFAFA;" stylesheets="@../../Downloads/login.css" text="Select report type" textFill="#170101">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </MenuButton>
+      <DatePicker layoutX="364.0" layoutY="114.0" opacity="0.47" prefHeight="26.0" prefWidth="144.0" showWeekNumbers="true" />
+      <Button layoutX="436.0" layoutY="156.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #2563EB;" text="Generate Report" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="106.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports Summary  " wrappingWidth="169.40000915527344">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f0f0" height="72.0" layoutX="117.0" layoutY="253.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.1" width="101.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f0f0" height="72.0" layoutX="237.0" layoutY="252.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.1" width="101.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f0f0" height="72.0" layoutX="354.0" layoutY="252.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.1" width="101.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f0f0" height="72.0" layoutX="472.0" layoutY="251.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.1" width="101.0" />
+   </children>
+</AnchorPane>

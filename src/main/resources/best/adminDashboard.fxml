@@ -5,7 +5,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -13,6 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -106,7 +111,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="empforms" layoutX="207.0" layoutY="13.0" prefHeight="480.0" prefWidth="780.0" style="-fx-background-color: white; -fx-background-radius: 15px;" visible="false">
+      <AnchorPane fx:id="empforms" layoutX="210.0" layoutY="14.0" prefHeight="480.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 15px;">
          <effect>
             <DropShadow />
          </effect>
@@ -121,9 +126,9 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <AnchorPane layoutX="11.0" layoutY="65.0" prefHeight="401.0" prefWidth="750.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
+            <AnchorPane layoutX="11.0" layoutY="72.0" prefHeight="383.0" prefWidth="770.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
                <effect>
-                  <DropShadow height="15.14" radius="7.07" width="15.14" />
+                  <DropShadow height="15.0" radius="5.75" width="10.0" />
                </effect>
                <children>
                   <Text layoutX="14.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Information">
@@ -131,49 +136,49 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Text>
-                  <Label layoutX="14.0" layoutY="57.0" prefHeight="20.0" prefWidth="71.0" text="Full name">
+                  <Label layoutX="14.0" layoutY="57.0" prefHeight="20.0" prefWidth="71.0" text="Full name" AnchorPane.topAnchor="64.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fullname" layoutX="14.0" layoutY="77.0" prefHeight="35.0" prefWidth="348.0" promptText="Enter fullname" />
-                  <Label layoutX="14.0" layoutY="120.0" prefHeight="20.0" prefWidth="71.0" text="Email">
+                  <TextField fx:id="full_name" layoutX="14.0" layoutY="77.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter fullname" AnchorPane.topAnchor="89.0" />
+                  <Label layoutX="14.0" layoutY="120.0" prefHeight="20.0" prefWidth="71.0" text="Email" AnchorPane.topAnchor="127.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="14.0" layoutY="140.0" prefHeight="39.0" prefWidth="348.0" promptText="Enter email" />
-                  <Text layoutX="14.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department">
+                  <TextField layoutX="11.0" layoutY="153.0" prefHeight="39.0" prefWidth="250.0" promptText="Enter email" />
+                  <Text layoutX="550.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" AnchorPane.topAnchor="64.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <ChoiceBox id="department" fx:id="choice1" cache="true" layoutX="13.0" layoutY="216.0" prefHeight="28.0" prefWidth="348.0" />
-                  <Label layoutX="14.0" layoutY="262.0" text="Basic Salary (GHS)">
+                  <ChoiceBox id="department" fx:id="choice1" cache="true" layoutX="549.0" layoutY="89.0" prefHeight="28.0" prefWidth="206.0" AnchorPane.topAnchor="89.0" />
+                  <Label layoutX="13.0" layoutY="202.0" prefHeight="20.0" text="Basic Salary (GHS)" AnchorPane.topAnchor="202.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="salary" layoutX="14.0" layoutY="282.0" prefHeight="35.0" prefWidth="342.0" promptText="Enter basic salary" />
-                  <Label layoutX="377.0" layoutY="57.0" prefHeight="20.0" prefWidth="136.0" text="Employee ID">
+                  <TextField fx:id="basic_salary" layoutX="13.0" layoutY="222.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter basic salary" AnchorPane.topAnchor="222.0" />
+                  <Label layoutX="291.0" layoutY="64.0" prefHeight="19.0" prefWidth="250.0" text="Employee ID" AnchorPane.leftAnchor="286.0" AnchorPane.topAnchor="64.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="empID" layoutX="377.0" layoutY="77.0" prefHeight="35.0" prefWidth="348.0" promptText="Employee ID..." />
-                  <Label layoutX="385.0" layoutY="120.0" prefHeight="20.0" prefWidth="71.0" text="Phone">
+                  <TextField fx:id="employee_id" layoutX="281.0" layoutY="84.0" prefHeight="35.0" prefWidth="250.0" promptText="Employee ID..." AnchorPane.leftAnchor="281.0" AnchorPane.topAnchor="89.0" />
+                  <Label layoutX="289.0" layoutY="127.0" prefHeight="20.0" prefWidth="71.0" text="Phone" AnchorPane.leftAnchor="281.0" AnchorPane.topAnchor="127.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="phone" layoutX="377.0" layoutY="144.0" prefHeight="35.0" prefWidth="348.0" promptText="Phone number" />
-                  <Label layoutX="14.0" layoutY="324.0" text="Status">
+                  <TextField fx:id="phone" layoutX="281.0" layoutY="151.0" prefHeight="35.0" prefWidth="250.0" promptText="Phone number" AnchorPane.leftAnchor="281.0" />
+                  <Label layoutX="553.0" layoutY="201.0" prefHeight="20.0" prefWidth="71.0" text="Status" AnchorPane.topAnchor="202.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="stat" layoutX="13.0" layoutY="355.0" prefHeight="26.0" prefWidth="348.0" />
-                  <Button layoutX="431.0" layoutY="353.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: gray; -fx-background-radius: 5px;" text="Cancel" textFill="WHITE">
+                  <ChoiceBox fx:id="stat" layoutX="549.0" layoutY="225.0" prefHeight="26.0" prefWidth="206.0" AnchorPane.topAnchor="222.0" />
+                  <Button layoutX="512.0" layoutY="323.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: gray; -fx-background-radius: 5px;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -184,19 +189,31 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="542.0" layoutY="353.0" mnemonicParsing="false" onAction="#saveEmp" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" text="Save Employee" textFill="WHITE">
+                  <Button layoutX="591.0" layoutY="323.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" text="Add Employee" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Label layoutX="385.0" layoutY="187.0" prefHeight="20.0" prefWidth="71.0" text="Position">
+                  <Label layoutX="289.0" layoutY="194.0" prefHeight="20.0" prefWidth="71.0" text="Position" AnchorPane.leftAnchor="281.0" AnchorPane.topAnchor="202.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="position" layoutX="385.0" layoutY="211.0" prefHeight="35.0" prefWidth="348.0" promptText="Enter position" />
+                  <TextField fx:id="position" layoutX="281.0" layoutY="220.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter position" AnchorPane.leftAnchor="281.0" AnchorPane.topAnchor="222.0" />
+                  <Label layoutX="550.0" layoutY="123.0" prefHeight="20.0" prefWidth="71.0" text="Hire Date" AnchorPane.leftAnchor="550.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="hire_date" layoutX="552.0" layoutY="158.0" prefHeight="28.0" prefWidth="206.0" AnchorPane.leftAnchor="547.0" />
+                  <Label layoutX="14.0" layoutY="268.0" prefHeight="20.0" prefWidth="71.0" text="Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="password" layoutX="11.0" layoutY="288.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter default password" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="5.0" right="10.0" top="5.0" />
@@ -211,12 +228,12 @@
          <children>
             <AnchorPane layoutX="14.0" layoutY="47.0" prefHeight="149.0" prefWidth="759.0" style="-fx-background-radius: 10px; -fx-background-color: white;">
                <effect>
-                  <DropShadow radius="10.7325" width="23.93" />
+                  <DropShadow height="10.0" radius="5.75" width="15.0" />
                </effect>
                <children>
                   <AnchorPane layoutX="22.0" layoutY="14.0" prefHeight="117.0" prefWidth="218.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
                      <effect>
-                        <DropShadow />
+                        <DropShadow height="10.0" radius="4.5" width="10.0" />
                      </effect>
                      <children>
                         <FontIcon iconColor="BLUE" iconLiteral="fas-users" iconSize="24" layoutX="14.0" layoutY="37.0" />
@@ -234,7 +251,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="271.0" layoutY="16.0" prefHeight="117.0" prefWidth="218.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
                      <effect>
-                        <DropShadow />
+                        <DropShadow height="10.0" radius="4.5" width="10.0" />
                      </effect>
                      <children>
                         <Text fill="BLUE" layoutX="74.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monthly Payment" wrappingWidth="129.9189453125">
@@ -257,7 +274,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="520.0" layoutY="16.0" prefHeight="117.0" prefWidth="218.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
                      <effect>
-                        <DropShadow />
+                        <DropShadow height="10.0" radius="4.5" width="10.0" />
                      </effect>
                      <children>
                         <Text fill="BLUE" layoutX="74.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departments" wrappingWidth="129.9189453125">
@@ -280,9 +297,9 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Text>
-            <AnchorPane layoutX="11.0" layoutY="211.0" prefHeight="262.0" prefWidth="750.0" style="-fx-background-radius: 10px; -fx-background-color: white;" stylesheets="@login.css">
+            <AnchorPane layoutX="11.0" layoutY="211.0" prefHeight="262.0" prefWidth="759.0" style="-fx-background-radius: 10px; -fx-background-color: white;" stylesheets="@login.css">
                <effect>
-                  <DropShadow radius="10.7325" width="23.93" />
+                  <DropShadow height="10.0" radius="5.75" width="15.0" />
                </effect>
                <children>
                   <TableView layoutX="13.0" layoutY="40.0" prefHeight="217.0" prefWidth="725.0" stylesheets="@login.css">
@@ -591,7 +608,7 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="settingforms" layoutX="215.0" layoutY="13.0" prefHeight="474.0" prefWidth="759.0" style="-fx-background-color: white; -fx-background-radius: 8px;">
+      <AnchorPane fx:id="settingforms" layoutX="215.0" layoutY="13.0" prefHeight="474.0" prefWidth="759.0" style="-fx-background-color: white; -fx-background-radius: 8px;" visible="false">
          <effect>
             <DropShadow />
          </effect>
@@ -744,6 +761,59 @@
                   </DropShadow>
                </effect>
             </HBox>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="reportforms" layoutX="210.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="780.0" style="-fx-background-color: white; -fx-background-radius: 8px;" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f0f0" height="149.0" layoutX="18.0" layoutY="77.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.1" width="742.0" />
+            <DatePicker layoutX="219.0" layoutY="123.0" opacity="0.47" prefHeight="30.0" prefWidth="200.0" showWeekNumbers="true" />
+            <Text layoutX="19.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports   " wrappingWidth="95.0" AnchorPane.leftAnchor="19.0">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Text>
+            <Text fill="GREY" layoutX="19.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports / Overview" wrappingWidth="116.5367431640625" />
+            <Text layoutX="40.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report Type" wrappingWidth="95.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="219.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From Date" wrappingWidth="95.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="479.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To Date" wrappingWidth="95.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <MenuButton alignment="CENTER" blendMode="MULTIPLY" cache="true" contentDisplay="TOP" layoutX="38.0" layoutY="126.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #FAFAFA;" stylesheets="@../../Downloads/login.css" text="Select report type" textFill="#170101">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </MenuButton>
+            <DatePicker layoutX="476.0" layoutY="123.0" opacity="0.47" prefHeight="30.0" prefWidth="200.0" showWeekNumbers="true" />
+            <Button layoutX="602.0" layoutY="180.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" style="-fx-background-color: #2563EB; -fx-background-radius: 5px;" text="Generate Report" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Text layoutX="18.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports Summary  " wrappingWidth="169.40000915527344" AnchorPane.leftAnchor="19.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
          </children>
          <effect>
             <DropShadow />

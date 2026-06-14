@@ -6,7 +6,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
@@ -15,8 +17,15 @@ import javafx.scene.control.TableColumn;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+
 
 
 
@@ -37,10 +46,10 @@ public class adminDashboardController implements Initializable {
     private Button empBtn;
 
     @FXML
-    private TextField empID;
+    private TextField employee_id;
 
     @FXML
-    private TextField fullname;
+    private TextField full_name;
 
     @FXML
     private Button homeBtn;
@@ -64,7 +73,7 @@ public class adminDashboardController implements Initializable {
     private Button reportBtn;
 
     @FXML
-    private TextField salary;
+    private TextField basic_salary;
 
     @FXML
     private Button settingBtn;
@@ -74,6 +83,9 @@ public class adminDashboardController implements Initializable {
 
     @FXML
     private Label totalemp;
+
+    @FXML
+    private DatePicker hire_date;
 
     @FXML
     private Button gen;
@@ -105,13 +117,17 @@ public class adminDashboardController implements Initializable {
     @FXML
     private AnchorPane settingforms;
 
+    @FXML
+    private AnchorPane reportforms;
 
+    @FXML
+    private PasswordField password;
 
 
     //This function helps switch in between the forms
     @FXML 
   void switchform (ActionEvent event) {
-    
+     
 
     if(event.getSource() == homeBtn){
       homeform.setVisible(true);
@@ -119,6 +135,7 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(false);
+      reportforms.setVisible(false);
 
 
       homeBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
@@ -138,6 +155,7 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(false);
+      reportforms.setVisible(false);
       
       empBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
@@ -150,10 +168,11 @@ public class adminDashboardController implements Initializable {
     else if(event.getSource()==directBtn){
       homeform.setVisible(false);
       empforms.setVisible(false);
-      firstpre.setVisible(false);
+     
       payslipforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(true);
+      reportforms.setVisible(false);
 
       directBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
@@ -168,9 +187,9 @@ public class adminDashboardController implements Initializable {
       homeform.setVisible(false);
       empforms.setVisible(false);
       payslipforms.setVisible(true);
-      previewforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(false);
+      reportforms.setVisible(false);
 
       payBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
@@ -188,6 +207,7 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(false);
+      reportforms.setVisible(true);
 
       reportBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
@@ -204,6 +224,7 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(false);
       settingforms.setVisible(true);
       empdirectoryforms.setVisible(false);
+      reportforms.setVisible(false);
 
       settingBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
@@ -219,8 +240,8 @@ public class adminDashboardController implements Initializable {
     
     
     //Dropdown items
-    private String[] department = {"IT", "Marketing", "Human Resource"};
-    private String[] choice2 = {"active", "inactive"};
+    private String[] department = {"1. IT", "2. Marketing", "3. Human Resource","4. Finance","5. Operations"};
+    private String[] choice2 = {"active", "on leave", "inactive"};
   
     //Dropdown
     @Override
@@ -229,10 +250,41 @@ public class adminDashboardController implements Initializable {
       stat.getItems().addAll(choice2);
     }
     
-    @FXML
-    void saveEmp(ActionEvent event) {
+    
 
-    }
+    //DATABASE 
+    private Connection connect;
+    private Statement statement;
+    private PreparedStatement prepare;
+    private ResultSet result;
+
+    // public void addEmployee(employeeData emp, String plainPassword){
+    //     String sql = " INSERT INTO employees(employee_id, full_name, email, phone, department_id,position, basic_salary, hire_date, status, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    //     connect = database.connectdb();
+    //     try {
+    //       prepare = connect.prepareStatement(sql);
+
+    //      prepare.setString(1, emp.getEmployeeId());
+    //        prepare.setString(2, emp.getFullName());
+    //        prepare.setString(3, emp.getEmail());
+    //        prepare.setString(4, emp.getPhone());
+    //        prepare.setInt   (5, emp.getDepartmentId());
+    //        prepare.setString(6, emp.getPosition());
+    //        prepare.setBigDecimal(7, emp.getBasicSalary());
+    //        prepare.setDate  (8, emp.getHireDate() != null
+    //                 ? Date.valueOf(emp.getHireDate()) : null);
+    //        prepare.setString(9, emp.getStatus());
+    //         // Hash password in production: BCrypt.hashpw(plainPassword, BCrypt.gensalt())
+    //        prepare.setString(10, plainPassword);
+
+    //        prepare.execute();
+
+    //     } catch (Exception e) {
+          
+    //     }
+
+    // }
+
 
     @FXML
     private void switchReport(){
