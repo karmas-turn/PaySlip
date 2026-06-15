@@ -111,7 +111,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="empforms" layoutX="210.0" layoutY="14.0" prefHeight="480.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 15px;">
+      <AnchorPane fx:id="empforms" layoutX="210.0" layoutY="14.0" prefHeight="480.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 15px;" visible="false">
          <effect>
             <DropShadow />
          </effect>
@@ -147,7 +147,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="11.0" layoutY="153.0" prefHeight="39.0" prefWidth="250.0" promptText="Enter email" />
+                  <TextField fx:id="email" layoutX="11.0" layoutY="153.0" prefHeight="39.0" prefWidth="250.0" promptText="Enter email" />
                   <Text layoutX="550.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" AnchorPane.topAnchor="64.0">
                      <font>
                         <Font size="14.0" />
@@ -189,7 +189,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="591.0" layoutY="323.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" text="Add Employee" textFill="WHITE">
+                  <Button layoutX="591.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleAddEmployee" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" text="Add Employee" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -221,7 +221,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="homeform" layoutX="224.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-radius: 10px; -fx-background-color: white;" stylesheets="@login.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <AnchorPane fx:id="homeform" layoutX="224.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-radius: 10px; -fx-background-color: white;" stylesheets="@login.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <effect>
             <DropShadow radius="10.7325" width="23.93" />
          </effect>
@@ -283,11 +283,11 @@
                            </font>
                         </Text>
                         <FontIcon iconColor="BLUE" iconLiteral="fas-building" iconSize="24" layoutX="18.0" layoutY="35.0" />
-                        <Text layoutX="36.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <Label fx:id="deptments_no" layoutX="27.0" layoutY="56.0" text="0">
                            <font>
                               <Font name="System Bold" size="31.0" />
                            </font>
-                        </Text>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>

@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +26,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 
@@ -39,6 +44,9 @@ public class adminDashboardController implements Initializable {
     @FXML
     private Button directBtn;
 
+      @FXML
+    private Label deptments_no;
+
     @FXML
     private AnchorPane empdirectoryforms;
 
@@ -47,6 +55,9 @@ public class adminDashboardController implements Initializable {
 
     @FXML
     private TextField employee_id;
+
+    @FXML
+    private TextField email;
 
     @FXML
     private TextField full_name;
@@ -91,6 +102,9 @@ public class adminDashboardController implements Initializable {
     private Button gen;
 
     @FXML
+    private TableView<employeeData> recentEmp;
+
+    @FXML
     private TableColumn<?, ?> recentempDepartment;
 
     @FXML
@@ -101,28 +115,33 @@ public class adminDashboardController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> recentempSalary;
-
+    
     @FXML
     private TableColumn<?, ?> recentempStatus;
-
+    
     @FXML
     private AnchorPane payslipforms;
-
-     @FXML
+    
+    @FXML
     private AnchorPane previewforms;
-
-     @FXML
+    
+    @FXML
     private AnchorPane firstpre;
-
+    
     @FXML
     private AnchorPane settingforms;
-
+    
     @FXML
     private AnchorPane reportforms;
-
+    
     @FXML
     private PasswordField password;
-
+    
+    //DATABASE 
+    private Connection connect;
+    private Statement statement;
+    private PreparedStatement prepare;
+    private ResultSet result;
 
     //This function helps switch in between the forms
     @FXML 
@@ -246,44 +265,217 @@ public class adminDashboardController implements Initializable {
     //Dropdown
     @Override
     public void initialize(URL arg0, ResourceBundle args){
+      try {
+        loadStats();
+        loadRecentEmployees();
+        setupTableColumns();
+      } catch (Exception e) {
+        System.err.println("Failed to load stats during initialization: " + e.getMessage());
+        e.printStackTrace();
+      }
       choice1.getItems().addAll(department);
       stat.getItems().addAll(choice2);
+    }
+
+
+    
+    
+    //Get form data and create employeeData object
+    private employeeData getFormData() {
+        String empId = employee_id.getText().trim();
+        String fullName = full_name.getText().trim();
+        String email = getEmailFromForm();
+        String phone = this.phone.getText().trim();
+        String position = this.position.getText().trim();
+        String basicSalaryStr = basic_salary.getText().trim();
+        String department = choice1.getValue();
+        String status = stat.getValue();
+        
+        int departmentId = parseDepartmentId(department);
+        java.math.BigDecimal basicSalary = new java.math.BigDecimal(basicSalaryStr);
+        java.time.LocalDate hireDate = hire_date.getValue();
+        
+        return new employeeData(0, empId, fullName, email, phone, departmentId, department, position, basicSalary, hireDate, status);
+    }
+    
+    //Get email field from form
+    private String getEmailFromForm() {
+        return email.getText().trim();
+    }
+    
+    //Parse department ID from department name (e.g., "1. IT" -> 1)
+    private int parseDepartmentId(String department) {
+        if (department == null || department.isEmpty()) return 0;
+        try {
+            String[] parts = department.split("\\.");
+            return Integer.parseInt(parts[0].trim());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    
+    //Clear form fields after successful submission
+    private void clearEmployeeForm() {
+        employee_id.clear();
+        full_name.clear();
+        email.clear();
+        phone.clear();
+        position.clear();
+        basic_salary.clear();
+        password.clear();
+        choice1.setValue(null);
+        stat.setValue(null);
+        hire_date.setValue(null);
+    }
+    
+    //Handle Add Employee button click
+    @FXML
+    private void handleAddEmployee() {
+        try {
+            String password = this.password.getText();
+            employeeData emp = getFormData();
+            
+            if (addEmployee(emp, password)) {
+                clearEmployeeForm();
+                loadStats();
+                loadRecentEmployees();
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Invalid salary amount. Please enter a valid number.");
+        } catch (Exception e) {
+            showAlert("Error", "Error processing form: " + e.getMessage());
+        }
     }
     
     
 
-    //DATABASE 
-    private Connection connect;
-    private Statement statement;
-    private PreparedStatement prepare;
-    private ResultSet result;
 
-    // public void addEmployee(employeeData emp, String plainPassword){
-    //     String sql = " INSERT INTO employees(employee_id, full_name, email, phone, department_id,position, basic_salary, hire_date, status, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    //     connect = database.connectdb();
-    //     try {
-    //       prepare = connect.prepareStatement(sql);
+    public void loadStats(){
+      connect = database.connectdb();
+      String deptsql = "SELECT COUNT(name) as total FROM departments";
+      String Salsql = "SELECT SUM(basic_salary) as total FROM employees ";
+      String Nosql = "SELECT COUNT(*) as total FROM employees";
 
-    //      prepare.setString(1, emp.getEmployeeId());
-    //        prepare.setString(2, emp.getFullName());
-    //        prepare.setString(3, emp.getEmail());
-    //        prepare.setString(4, emp.getPhone());
-    //        prepare.setInt   (5, emp.getDepartmentId());
-    //        prepare.setString(6, emp.getPosition());
-    //        prepare.setBigDecimal(7, emp.getBasicSalary());
-    //        prepare.setDate  (8, emp.getHireDate() != null
-    //                 ? Date.valueOf(emp.getHireDate()) : null);
-    //        prepare.setString(9, emp.getStatus());
-    //         // Hash password in production: BCrypt.hashpw(plainPassword, BCrypt.gensalt())
-    //        prepare.setString(10, plainPassword);
+      try {
+        prepare = connect.prepareStatement(Nosql);
+        ResultSet rs1 = prepare.executeQuery();
+        if(rs1.next()){
+          int count = rs1.getInt("total");
+          totalemp.setText(String.valueOf(count));
+        }
 
-    //        prepare.execute();
+        prepare = connect.prepareStatement(deptsql);
+        ResultSet rs2 = prepare.executeQuery();
+        if(rs2.next()){
+          int count2 = rs2.getInt("total");
+          deptments_no.setText(String.valueOf(count2));
+        }
 
-    //     } catch (Exception e) {
-          
-    //     }
+        
+        PreparedStatement prepare3 = connect.prepareStatement(Salsql);
+        ResultSet rs3 = prepare3.executeQuery();
+        if(rs3.next()){
+          float count3 = rs3.getFloat("total");
+          payment.setText(String.valueOf(count3));
+        }
 
-    // }
+
+      } catch (Exception e) {
+        System.err.println("Error loading stats: " + e.getMessage());
+        e.printStackTrace();
+        totalemp.setText("0");
+        deptments_no.setText("0");
+        payment.setText("0");
+      }
+
+    }
+
+    public boolean addEmployee(employeeData emp, String plainPassword){
+        String validationError = validateEmployeeData(emp, plainPassword);
+        if (validationError != null) {
+            showAlert("Validation Error", validationError);
+            return false;
+        }
+
+        String sql = "INSERT INTO employees(employee_id, full_name, email, phone, department_id, position, basic_salary, hire_date, status, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        connect = database.connectdb();
+        
+        if (connect == null) {
+            showAlert("Error", "Database connection failed");
+            return false;
+        }
+        
+        try {
+            prepare = connect.prepareStatement(sql);
+            prepare.setString(1, emp.getEmployeeId());
+            prepare.setString(2, emp.getFullName());
+            prepare.setString(3, emp.getEmail());
+            prepare.setString(4, emp.getPhone());
+            prepare.setInt(5, emp.getDepartmentId());
+            prepare.setString(6, emp.getPosition());
+            prepare.setBigDecimal(7, emp.getBasicSalary());
+            prepare.setDate(8, emp.getHireDate() != null ? Date.valueOf(emp.getHireDate()) : null);
+            prepare.setString(9, emp.getStatus());
+            prepare.setString(10, plainPassword);
+
+            prepare.execute();
+            showAlert("Success", "Employee added successfully");
+            return true;
+
+        } catch (Exception e) {
+            showAlert("Error", "Failed to add employee: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (connect != null) connect.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String validateEmployeeData(employeeData emp, String password) {
+        if (emp.getEmployeeId() == null || emp.getEmployeeId().trim().isEmpty()) {
+            return "Employee ID is required";
+        }
+        if (emp.getFullName() == null || emp.getFullName().trim().isEmpty()) {
+            return "Full name is required";
+        }
+        if (emp.getEmail() == null || !emp.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            return "Valid email is required";
+        }
+        if (emp.getPhone() == null || !emp.getPhone().matches("\\d{10}")) {
+            return "Valid phone number (10 digits) is required";
+        }
+        if (emp.getDepartmentId() <= 0) {
+            return "Valid department is required";
+        }
+        if (emp.getPosition() == null || emp.getPosition().trim().isEmpty()) {
+            return "Position is required";
+        }
+        if (emp.getBasicSalary() == null || emp.getBasicSalary().signum() <= 0) {
+            return "Basic salary must be greater than 0";
+        }
+        if (emp.getHireDate() == null) {
+            return "Hire date is required";
+        }
+        if (emp.getStatus() == null || emp.getStatus().trim().isEmpty()) {
+            return "Status is required";
+        }
+        if (password == null || password.length() < 6) {
+            return "Password must be at least 6 characters";
+        }
+        return null;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 
     @FXML
@@ -311,6 +503,68 @@ public class adminDashboardController implements Initializable {
         // TODO: handle exception
       }
       
+    }
+
+    // Setup table columns to bind to employeeData properties
+    private void setupTableColumns() {
+      recentempID.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+      recentempName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+      recentempDepartment.setCellValueFactory(new PropertyValueFactory<>("departmentName"));
+      recentempStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+      recentempSalary.setCellValueFactory(new PropertyValueFactory<>("basicSalary"));
+    }
+
+    // Load recent employees from database and populate table
+    public void loadRecentEmployees() {
+      connect = database.connectdb();
+      String sql = "SELECT id, employee_id, full_name, email, phone, department_id, position, basic_salary, hire_date, status FROM employees ORDER BY id DESC LIMIT 10";
+      
+      ObservableList<employeeData> empList = FXCollections.observableArrayList();
+      
+      try {
+        prepare = connect.prepareStatement(sql);
+        ResultSet rs = prepare.executeQuery();
+        
+        while (rs.next()) {
+          int id = rs.getInt("id");
+          String empId = rs.getString("employee_id");
+          String fullName = rs.getString("full_name");
+          String emailVal = rs.getString("email");
+          String phoneVal = rs.getString("phone");
+          int deptId = rs.getInt("department_id");
+          String pos = rs.getString("position");
+          java.math.BigDecimal salary = rs.getBigDecimal("basic_salary");
+          java.time.LocalDate hireDate = rs.getDate("hire_date") != null ? rs.getDate("hire_date").toLocalDate() : null;
+          String statusVal = rs.getString("status");
+          
+          // Get department name
+          String deptName = getDepartmentName(deptId);
+          
+          employeeData emp = new employeeData(id, empId, fullName, emailVal, phoneVal, deptId, deptName, pos, salary, hireDate, statusVal);
+          empList.add(emp);
+        }
+        
+        recentEmp.setItems(empList);
+        
+      } catch (Exception e) {
+        System.err.println("Error loading recent employees: " + e.getMessage());
+        e.printStackTrace();
+      } finally {
+        try {
+          if (connect != null) connect.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+    // Helper method to get department name by ID
+    private String getDepartmentName(int deptId) {
+      String[] depts = {"IT", "Marketing", "Human Resource", "Finance", "Operations"};
+      if (deptId > 0 && deptId <= depts.length) {
+        return depts[deptId - 1];
+      }
+      return "Unknown";
     }
 
     
