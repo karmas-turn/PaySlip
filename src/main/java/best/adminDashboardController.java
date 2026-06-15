@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -105,19 +106,19 @@ public class adminDashboardController implements Initializable {
     private TableView<employeeData> recentEmp;
 
     @FXML
-    private TableColumn<?, ?> recentempDepartment;
+    private TableColumn<employeeData, String> recentempDepartment;
 
     @FXML
-    private TableColumn<?, ?> recentempID;
+    private TableColumn<employeeData, String> recentempID;
 
     @FXML
-    private TableColumn<?, ?> recentempName;
+    private TableColumn<employeeData,String> recentempName;
 
     @FXML
-    private TableColumn<?, ?> recentempSalary;
+    private TableColumn<employeeData, BigDecimal> recentempSalary;
     
     @FXML
-    private TableColumn<?, ?> recentempStatus;
+    private TableColumn<employeeData, String> recentempStatus;
     
     @FXML
     private AnchorPane payslipforms;
@@ -267,8 +268,7 @@ public class adminDashboardController implements Initializable {
     public void initialize(URL arg0, ResourceBundle args){
       try {
         loadStats();
-        loadRecentEmployees();
-        setupTableColumns();
+        addEmployeeShowList();
       } catch (Exception e) {
         System.err.println("Failed to load stats during initialization: " + e.getMessage());
         e.printStackTrace();
@@ -277,8 +277,47 @@ public class adminDashboardController implements Initializable {
       stat.getItems().addAll(choice2);
     }
 
+    public ObservableList<employeeData> addEmployeeListData(){
+        ObservableList<employeeData> ListData = FXCollections.observableArrayList();
+        String Sql = "SELECT e.employee_id, e.full_name, d.department,e.status, e.basic_salary  FROM employees e JOIN departments d ON e.department_id = d.id ORDER BY e.employee_id DESC LIMIT 7";
+        connect = database.connectdb();
+        try {
+            prepare = connect.prepareStatement(Sql);
+            result = prepare.executeQuery();
+            employeeData employeeD;
 
+            while (result.next()){
+                employeeD = new employeeData(0, 
+                    result.getString("employee_id"), 
+                    result.getString("fullname"), 
+                    "",
+                    "", 
+                    0,
+                    result.getString("department"),
+                    Sql, result.getBigDecimal("basic_salary"),
+                     null, 
+                    result.getString("staus"));
+                    ListData.add(employeeD);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ListData;
+    }
     
+    private ObservableList<employeeData> addEmployeeList;
+    public void addEmployeeShowList(){
+        addEmployeeList = addEmployeeListData();
+        recentempID.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        recentempName.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+        recentempSalary.setCellValueFactory(new PropertyValueFactory<>("basicSalary"));
+        recentempStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        recentempDepartment.setCellValueFactory(new PropertyValueFactory<>("departmentName"));
+
+        recentEmp.setItems(addEmployeeList);
+    }
     
     //Get form data and create employeeData object
     private employeeData getFormData() {
@@ -319,7 +358,6 @@ public class adminDashboardController implements Initializable {
         employee_id.clear();
         full_name.clear();
         email.clear();
-        phone.clear();
         position.clear();
         basic_salary.clear();
         password.clear();
@@ -338,7 +376,7 @@ public class adminDashboardController implements Initializable {
             if (addEmployee(emp, password)) {
                 clearEmployeeForm();
                 loadStats();
-                loadRecentEmployees();
+                addEmployeeShowList();
             }
         } catch (NumberFormatException e) {
             showAlert("Error", "Invalid salary amount. Please enter a valid number.");
@@ -503,68 +541,6 @@ public class adminDashboardController implements Initializable {
         // TODO: handle exception
       }
       
-    }
-
-    // Setup table columns to bind to employeeData properties
-    private void setupTableColumns() {
-      recentempID.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
-      recentempName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-      recentempDepartment.setCellValueFactory(new PropertyValueFactory<>("departmentName"));
-      recentempStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-      recentempSalary.setCellValueFactory(new PropertyValueFactory<>("basicSalary"));
-    }
-
-    // Load recent employees from database and populate table
-    public void loadRecentEmployees() {
-      connect = database.connectdb();
-      String sql = "SELECT id, employee_id, full_name, email, phone, department_id, position, basic_salary, hire_date, status FROM employees ORDER BY id DESC LIMIT 10";
-      
-      ObservableList<employeeData> empList = FXCollections.observableArrayList();
-      
-      try {
-        prepare = connect.prepareStatement(sql);
-        ResultSet rs = prepare.executeQuery();
-        
-        while (rs.next()) {
-          int id = rs.getInt("id");
-          String empId = rs.getString("employee_id");
-          String fullName = rs.getString("full_name");
-          String emailVal = rs.getString("email");
-          String phoneVal = rs.getString("phone");
-          int deptId = rs.getInt("department_id");
-          String pos = rs.getString("position");
-          java.math.BigDecimal salary = rs.getBigDecimal("basic_salary");
-          java.time.LocalDate hireDate = rs.getDate("hire_date") != null ? rs.getDate("hire_date").toLocalDate() : null;
-          String statusVal = rs.getString("status");
-          
-          // Get department name
-          String deptName = getDepartmentName(deptId);
-          
-          employeeData emp = new employeeData(id, empId, fullName, emailVal, phoneVal, deptId, deptName, pos, salary, hireDate, statusVal);
-          empList.add(emp);
-        }
-        
-        recentEmp.setItems(empList);
-        
-      } catch (Exception e) {
-        System.err.println("Error loading recent employees: " + e.getMessage());
-        e.printStackTrace();
-      } finally {
-        try {
-          if (connect != null) connect.close();
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    }
-
-    // Helper method to get department name by ID
-    private String getDepartmentName(int deptId) {
-      String[] depts = {"IT", "Marketing", "Human Resource", "Finance", "Operations"};
-      if (deptId > 0 && deptId <= depts.length) {
-        return depts[deptId - 1];
-      }
-      return "Unknown";
     }
 
     
