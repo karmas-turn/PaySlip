@@ -32,7 +32,7 @@ public class EmpLoginController {
     private ResultSet result;
 
     public void loginEmp(){
-        String sql = "SELECT * FROM employees WHERE email = ? and password = ? ";
+        String sql = "SELECT email, password FROM employees WHERE email = ? and password = ? ";
         connect = database.connectdb();
 
         try  {

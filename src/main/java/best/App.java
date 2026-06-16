@@ -23,12 +23,14 @@ public class App extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+        stage.sizeToScene();
+        stage.centerOnScreen();
+        
     }
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
-        // stage.sizeToScene();
-        // stage.centerOnScreen();
+        
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

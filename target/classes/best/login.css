@@ -24,6 +24,11 @@
   -fx-background-insets: 0;
   -fx-background-radius: 0;
 }
+.table-view .table-cell{
+  -fx-alignment: center;
+  -fx-padding: 8px 10px 10px 8px;
+}
+
 .table-view .column-header, .table-view .filler{
   -fx-background-color: transparent;
   -fx-size: 45px;
@@ -33,4 +38,6 @@
   -fx-text-fill: white;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
+  -fx-alignment: center;
+  -fx-padding: 3px;
 }
