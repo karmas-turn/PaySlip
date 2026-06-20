@@ -23,8 +23,10 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -34,7 +36,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.paint.Color;
 
-
+import java.lang.Double;
 
 
 
@@ -170,6 +172,49 @@ public class adminDashboardController implements Initializable {
 
      @FXML
     private Button update;
+
+     @FXML
+    private TextField searchField;
+
+   // --- Dropdowns ---
+    @FXML 
+    private ChoiceBox<employeeData> employeeChoiceBox;
+    @FXML
+    private ChoiceBox<String> monthChoiceBox;
+    @FXML 
+    private ChoiceBox<String> yearChoiceBox;
+    @FXML 
+    private ChoiceBox<String> statusChoiceBox;
+
+
+
+    // --- Input Fields (Earnings & Deductions) ---
+    @FXML 
+    private TextField basicSalaryField;
+    @FXML 
+    private TextField transportField;
+    @FXML 
+    private TextField allowanceField;
+    @FXML 
+    private TextField ssnitField;
+    @FXML 
+    private TextField taxField;
+    @FXML 
+    private TextField otherDeductionField;
+
+    // --- Summary Labels ---
+    @FXML 
+    private Label totalEarningsLabel;
+    @FXML 
+    private Label totalDeductionLabel;
+    @FXML 
+    private Label netPayLabel;
+    @FXML 
+    private Button generatePaySlipButton;
+    @FXML
+    private TextField employeeIDField;
+  @FXML
+    private TextField empid;
     
     //DATABASE 
     private Connection connect;
@@ -303,12 +348,81 @@ public class adminDashboardController implements Initializable {
         loadStats();
         addEmployeeShowList();
         showemployeeList();
+        populateEmployeeChoiceBox();
+        setupRealTimeCalculations();
+        
       } catch (Exception e) {
         System.err.println("Failed to load stats during initialization: " + e.getMessage());
         e.printStackTrace();
       }
       choice1.getItems().addAll(department);
       stat.getItems().addAll(choice2);
+
+        
+        monthChoiceBox.setItems(FXCollections.observableArrayList(
+            "January", "February", "March", "April", "May", "June", 
+            "July", "August", "September", "October", "November", "December"
+        ));
+        
+        yearChoiceBox.setItems(FXCollections.observableArrayList(
+            "2024", "2025", "2026", "2027"
+        ));
+
+      
+        statusChoiceBox.setItems(FXCollections.observableArrayList(
+            "Paid", "Pending"
+        ));
+        statusChoiceBox.setValue("Pending"); // Set default option to Pending
+        
+        
+    }
+
+
+
+    private void populateEmployeeChoiceBox() {
+        ObservableList<employeeData> employeeList = FXCollections.observableArrayList();
+        String query = "SELECT id,full_name, basic_salary,employee_id FROM employees ORDER BY full_name ASC"; 
+        connect = database.connectdb();
+        try{
+          prepare = connect.prepareStatement(query);
+          result = prepare.executeQuery();
+            while (result.next()) {
+
+                employeeData employeeD2 = new employeeData(
+                                  result.getInt("id"),
+                                  result.getString("employee_id"), 
+                                  result.getString("full_name"), 
+                                  null,
+                                  null,
+                                  0,
+                                  null, 
+                                  null,
+                                  result.getBigDecimal("basic_salary"),
+                                  null,
+                                  null
+
+                );
+                employeeList.add(employeeD2);
+            }
+            
+            employeeChoiceBox.setItems(employeeList);
+            employeeChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    if (newValue != null && newValue.getBasicSalary() != null && newValue.getEmployeeId()!=null && newValue.getId() != 0) {
+        // Formats the BigDecimal salary to text and displays it
+        basicSalaryField.setText(String.valueOf(newValue.getBasicSalary()));
+        employeeIDField.setText(newValue.getEmployeeId());
+        empid.setText(String.valueOf(newValue.getId()));
+    } else {
+        // Clears the field if no employee is selected
+        basicSalaryField.setText("");
+        employeeIDField.setText("");
+    }
+});
+        
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ObservableList <employeeData> allEmployeeData(){
@@ -321,7 +435,7 @@ public class adminDashboardController implements Initializable {
             result = prepare.executeQuery();
             while (result.next()) {
                 employeeData employeeD2 = new employeeData(
-                  0,
+                  result.getInt("id"),
                   result.getString("employee_id"),
                   result.getString("full_name"),
                   result.getString("email"),
@@ -345,8 +459,56 @@ public class adminDashboardController implements Initializable {
     private ObservableList<employeeData> allEmployeeList;
     private int selectedEmployeeId = -1;
 
+    //Employee directory
     public void showemployeeList(){
         allEmployeeList = allEmployeeData();
+
+      // 1. Wrap the ObservableList in a FilteredList (initially displaying all data)
+            javafx.collections.transformation.FilteredList<employeeData> filteredData = 
+            new javafx.collections.transformation.FilteredList<>(allEmployeeList, p -> true);
+
+    // 2. Set the filter Predicate whenever the search field changes
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+             filteredData.setPredicate(employee -> {
+            // If search field is empty, display all employees
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+
+            String lowerCaseFilter = newValue.toLowerCase().trim();
+
+            // Check match against Employee ID
+            if (employee.getEmployeeId() != null && employee.getEmployeeId().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            }
+            // Check match against Full Name
+            else if (employee.getFullName() != null && employee.getFullName().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            }
+            // Check match against Department Name
+            else if (employee.getDepartmentName() != null && employee.getDepartmentName().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            }
+            // Check match against Position
+            else if (employee.getPosition() != null && employee.getPosition().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            }
+            // Check match against Status
+            else if (employee.getStatus() != null && employee.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            }
+            
+            return false; // Does not match any criteria
+        });
+    });
+
+    // 3. Wrap the FilteredList in a SortedList so users can still click columns to sort
+            javafx.collections.transformation.SortedList<employeeData> sortedData = 
+            new javafx.collections.transformation.SortedList<>(filteredData);
+    
+    // Bind the SortedList comparator to the TableView comparator
+    sortedData.comparatorProperty().bind(allDataTable.comparatorProperty());
+
         allDataID.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         allDataName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         allDataPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
@@ -390,7 +552,7 @@ public class adminDashboardController implements Initializable {
         allDataactivites.setCellFactory(column -> new TableCell<employeeData, String>() {
           private final Button editButton = new Button("Edit");
           private final Button updateButton = new Button("Update");
-          private final HBox buttons = new HBox(6, editButton, updateButton);
+          private final HBox buttons = new HBox( editButton);
 
           {
             editButton.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 4px;");
@@ -435,7 +597,7 @@ public class adminDashboardController implements Initializable {
           }
         });
 
-        allDataTable.setItems(allEmployeeList);
+        allDataTable.setItems(sortedData);
     }
 
     private void populateEmployeeForm(employeeData employee) {
@@ -459,7 +621,7 @@ public class adminDashboardController implements Initializable {
             addEmployeeBtn.setVisible(false);
         }
     }
-
+//Reupdate the stats after updating the database
     @FXML
     private void handleUpdateEmployee() {
         if (updateEmployeeFromForm()) {
@@ -469,7 +631,7 @@ public class adminDashboardController implements Initializable {
             addEmployeeShowList();
         }
     }
-
+//Updating employee form
     private boolean updateEmployeeFromForm() {
         if (selectedEmployeeId <= 0) {
             showAlert("Error", "No employee selected for update.");
@@ -632,6 +794,7 @@ public class adminDashboardController implements Initializable {
     private void clearEmployeeForm() {
         employee_id.clear();
         full_name.clear();
+        phone.clear();
         email.clear();
         position.clear();
         basic_salary.clear();
@@ -647,7 +810,137 @@ public class adminDashboardController implements Initializable {
             addEmployeeBtn.setVisible(true);
         }
     }
+  
     
+
+     private void setupRealTimeCalculations() {
+        TextField[] allFields = {basicSalaryField, transportField, allowanceField, ssnitField, taxField, otherDeductionField};
+        for (TextField field : allFields) {
+            field.textProperty().addListener((observable, oldValue, newValue) -> calculateTotals());
+        }
+    }
+
+    private void calculateTotals() {
+        try {
+            double basic = parseDouble(basicSalaryField.getText());
+            double transport = parseDouble(transportField.getText());
+            double allowance = parseDouble(allowanceField.getText());
+
+            double ssnit = parseDouble(ssnitField.getText());
+            double tax = parseDouble(taxField.getText());
+            double otherDeduction = parseDouble(otherDeductionField.getText());
+            double totalEarnings = basic + transport + allowance;
+            double totalDeductions = ssnit + tax + otherDeduction;
+            double netPay = totalEarnings - totalDeductions;
+
+            totalEarningsLabel.setText(String.format("%.2f", totalEarnings));
+
+            totalDeductionLabel.setText(String.format("%.2f", totalDeductions));
+            netPayLabel.setText(String.format("%.2f", netPay));
+
+        } catch (NumberFormatException e) {
+            // Silently ignore typing errors
+        }
+    }
+    private double parseDouble(String value){
+      if (value == null || value.trim().isEmpty()){
+        return 0.0;
+      }
+      try{
+        return Double.parseDouble(value);
+      } catch(NumberFormatException e){
+        return 0.0;
+      }
+    }
+ private void clearGenerateSlips(){
+
+        employeeChoiceBox.setValue(null);
+
+        monthChoiceBox.setValue(null);
+
+        yearChoiceBox.setValue(null);
+
+        statusChoiceBox.setValue("Pending");
+
+        basicSalaryField.clear();
+
+        transportField.clear();
+
+        allowanceField.clear();
+
+        ssnitField.clear();
+
+        taxField.clear();
+
+        otherDeductionField.clear();
+
+        totalEarningsLabel.setText("0.00");
+
+        totalDeductionLabel.setText("0.00");
+
+        netPayLabel.setText("0.00");
+
+    }
+
+     @FXML
+    private void handleGeneratePaySlip() {
+        // Validation check
+        if (employeeChoiceBox.getValue() == null||  monthChoiceBox.getValue() == null || yearChoiceBox.getValue() == null || statusChoiceBox.getValue() == null) {
+            showAlert("Validation Error", "Please select an employee, month, year, and status.");
+            return;
+        }
+         if (basicSalaryField.getText().trim().isEmpty()) {
+            showAlert("Validation Error", "Basic Salary cannot be empty.");
+            return;
+        }
+         try {
+            Double.parseDouble(basicSalaryField.getText().trim());
+        } catch (NumberFormatException e) {
+            showAlert("Validation Error", "Basic Salary must be a valid number.");
+            return;
+        }
+
+         String sql =  " INSERT INTO payslips(employee_id, pay_period_month, pay_period_year,basic_salary, allowance, transport,tax, ssnt, other_deductions, status)"
+               + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" +
+               " ON DUPLICATE KEY UPDATE basic_salary = VALUES(basic_salary), allowance = VALUES(allowance),transport = VALUES(transport),tax = VALUES(tax),ssnt = VALUES(ssnt),other_deductions = VALUES(other_deductions)"
+                ;
+
+          connect = database.connectdb();
+        try  {
+          prepare = connect.prepareStatement(sql);
+          
+            // Bind values
+            prepare.setString(1, empid.getText());
+            prepare.setString(2, monthChoiceBox.getValue());
+            prepare.setString(3, yearChoiceBox.getValue());
+            
+            prepare.setDouble(4, parseDouble(basicSalaryField.getText()));
+            prepare.setDouble(6, parseDouble(transportField.getText()));
+            prepare.setDouble(5, parseDouble(allowanceField.getText()));
+            
+            prepare.setDouble(8, parseDouble(ssnitField.getText()));
+            prepare.setDouble(7, parseDouble(taxField.getText()));
+            prepare.setDouble(9, parseDouble(otherDeductionField.getText()));
+            
+            
+            
+            // Pass the string directly ("Paid", "Pending", or "Not Paid")
+            prepare.setString(10, statusChoiceBox.getValue()); 
+
+            int rowsInserted = prepare.executeUpdate();
+            if (rowsInserted > 0) {
+                showAlert("Success", "Payslip generated successfully.");
+                clearGenerateSlips();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to generate payslip: " + e.getMessage());
+        }
+    }
+
+
+
     //Handle Add Employee button click
     @FXML
     private void handleAddEmployee() {
@@ -659,6 +952,8 @@ public class adminDashboardController implements Initializable {
                 clearEmployeeForm();
                 loadStats();
                 addEmployeeShowList();
+                showemployeeList();
+                populateEmployeeChoiceBox();
             }
         } catch (NumberFormatException e) {
             showAlert("Error", "Invalid salary amount. Please enter a valid number.");

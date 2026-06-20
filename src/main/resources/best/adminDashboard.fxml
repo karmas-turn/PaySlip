@@ -4,11 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -20,7 +17,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-
 
 <StackPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="best.adminDashboardController">
    <children>
@@ -113,7 +109,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="empforms" layoutX="210.0" layoutY="14.0" prefHeight="480.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 15px;">
+            <AnchorPane fx:id="empforms" layoutX="210.0" layoutY="14.0" prefHeight="480.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 15px;" visible="false">
                <effect>
                   <DropShadow />
                </effect>
@@ -155,7 +151,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <ChoiceBox id="department" fx:id="choice1" cache="true" layoutX="549.0" layoutY="89.0" prefHeight="28.0" prefWidth="206.0" AnchorPane.topAnchor="89.0" />
+                        <ChoiceBox id="department" fx:id="choice1" cache="true" layoutX="549.0" layoutY="89.0" prefHeight="28.0" prefWidth="206.0" style="-fx-background-color: white; -fx-border-color: gray;" AnchorPane.topAnchor="89.0" />
                         <Label layoutX="13.0" layoutY="202.0" prefHeight="20.0" text="Basic Salary (GHS)" AnchorPane.topAnchor="202.0">
                            <font>
                               <Font size="14.0" />
@@ -179,7 +175,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="stat" layoutX="549.0" layoutY="225.0" prefHeight="26.0" prefWidth="206.0" AnchorPane.topAnchor="222.0" />
+                        <ChoiceBox fx:id="stat" layoutX="549.0" layoutY="225.0" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: white; -fx-border-color: gray;" AnchorPane.topAnchor="222.0" />
                         <Button layoutX="342.0" layoutY="323.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: gray; -fx-background-radius: 5px;" text="Cancel" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
@@ -210,7 +206,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="hire_date" layoutX="552.0" layoutY="158.0" prefHeight="28.0" prefWidth="206.0" AnchorPane.leftAnchor="547.0" />
+                        <DatePicker fx:id="hire_date" layoutX="552.0" layoutY="158.0" prefHeight="28.0" prefWidth="206.0" style="-fx-background-color: white; -fx-border-color: gray;" AnchorPane.leftAnchor="547.0" />
                         <Label layoutX="14.0" layoutY="268.0" prefHeight="20.0" prefWidth="71.0" text="Password">
                            <font>
                               <Font size="14.0" />
@@ -336,44 +332,145 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="payslipforms" layoutX="216.0" layoutY="13.0" prefHeight="469.0" prefWidth="768.0" style="-fx-background-color: white; -fx-background-radius: 5px;" visible="false">
+            <AnchorPane fx:id="payslipforms" layoutX="207.0" layoutY="13.0" prefHeight="465.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
                <children>
-                  <AnchorPane fx:id="firstpre" layoutX="14.0" layoutY="22.0" prefHeight="392.0" prefWidth="591.0">
+                  <AnchorPane fx:id="firstpre" layoutY="3.0" prefHeight="474.0" prefWidth="782.0">
                      <children>
-                        <Label layoutY="7.0" prefHeight="30.0" prefWidth="172.0" text="Generate Payslip">
+                        <Label layoutX="7.0" layoutY="-1.0" prefHeight="30.0" prefWidth="172.0" text="Generate Payslip">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="222.0" layoutY="86.0" prefHeight="17.0" prefWidth="114.0" text="Select Employee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <ComboBox layoutX="223.0" layoutY="114.0" prefHeight="25.0" prefWidth="284.0" promptText="Select employee" />
-                        <Label layoutX="226.0" layoutY="158.0" prefHeight="17.0" prefWidth="91.0" text="Select Month">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <ComboBox layoutX="222.0" layoutY="177.0" prefHeight="25.0" prefWidth="286.0" promptText="Select month" />
-                        <Label layoutX="223.0" layoutY="216.0" prefHeight="17.0" prefWidth="75.0" text="Select Year">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <ComboBox layoutX="222.0" layoutY="236.0" prefHeight="25.0" prefWidth="286.0" promptText="Select year" />
-                        <Button layoutX="221.0" layoutY="285.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="91.0" style="-fx-background-radius: 5px;" text="Cancel">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="gen" layoutX="356.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchReport" prefHeight="34.0" prefWidth="152.0" style="-fx-background-color: #3b5bdb; -fx-background-radius: 5px;" text="Generate Payslip" textFill="#fcf8f8">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Text fill="GREY" layoutX="7.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip / Review" />
+                        <Text fill="GREY" layoutX="7.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip / Add Payslip" />
+                        <AnchorPane layoutX="14.0" layoutY="56.0" prefHeight="86.0" prefWidth="759.0" style="-fx-background-color: white;">
+                           <effect>
+                              <DropShadow height="10.0" radius="3.5" width="6.0" />
+                           </effect>
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" text="Employee " AnchorPane.topAnchor="14.0" />
+                              <ChoiceBox fx:id="employeeChoiceBox" layoutX="14.0" layoutY="43.0" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: white; -fx-border-color: grey;" AnchorPane.topAnchor="45.0" />
+                              <Label layoutX="286.0" layoutY="16.0" text="Month" AnchorPane.topAnchor="14.0" />
+                              <ChoiceBox fx:id="monthChoiceBox" layoutX="286.0" layoutY="45.0" prefHeight="30.0" prefWidth="126.0" style="-fx-background-color: white; -fx-border-color: grey;" AnchorPane.topAnchor="45.0" />
+                              <Label layoutX="438.0" layoutY="15.0" text="Year" AnchorPane.topAnchor="15.0" />
+                              <ChoiceBox fx:id="yearChoiceBox" layoutX="438.0" layoutY="46.0" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: gray;" AnchorPane.topAnchor="46.0" />
+                              <Label layoutX="593.0" layoutY="13.0" text="Status" />
+                              <ChoiceBox fx:id="statusChoiceBox" layoutX="593.0" layoutY="44.0" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: white; -fx-border-color: gray;" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="14.0" layoutY="158.0" prefHeight="190.0" prefWidth="316.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
+                           <effect>
+                              <DropShadow height="10.0" radius="3.5" width="6.0" />
+                           </effect>
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" style="-fx-text-fill: #0fae27;" text="Earnings" textFill="#0fae27" AnchorPane.topAnchor="14.0">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="44.0" text="Earning Type" AnchorPane.topAnchor="44.0">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="215.0" layoutY="44.0" text="Amount" AnchorPane.topAnchor="44.0">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="77.0" text="Basic Salary" />
+                              <TextField fx:id="basicSalaryField" editable="false" layoutX="158.0" layoutY="74.0" promptText="Monthly Salary" />
+                              <Label layoutX="12.0" layoutY="116.0" text="Transport " />
+                              <TextField fx:id="transportField" layoutX="156.0" layoutY="113.0" promptText="Transport" />
+                              <Label layoutX="14.0" layoutY="155.0" text="Allowance" />
+                              <TextField fx:id="allowanceField" layoutX="158.0" layoutY="152.0" promptText="Allowance" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="456.0" layoutY="150.0" prefHeight="190.0" prefWidth="317.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
+                           <effect>
+                              <DropShadow height="10.0" radius="3.5" width="6.0" />
+                           </effect>
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" style="-fx-text-fill: #d70909;" text="Deductions" textFill="#e41704" AnchorPane.topAnchor="14.0">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="44.0" text="Deduction Type" AnchorPane.topAnchor="44.0">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="215.0" layoutY="44.0" text="Amount" AnchorPane.topAnchor="44.0">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="77.0" text="SSNIT" />
+                              <TextField fx:id="ssnitField" layoutX="158.0" layoutY="74.0" promptText="SSNIT" />
+                              <Label layoutX="12.0" layoutY="116.0" text="Tax" />
+                              <TextField fx:id="taxField" layoutX="156.0" layoutY="113.0" promptText="Tax" />
+                              <Label layoutX="14.0" layoutY="155.0" text="Other deduction" />
+                              <TextField fx:id="otherDeductionField" layoutX="158.0" layoutY="152.0" promptText="Other deduction" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="14.0" layoutY="357.0" prefHeight="64.0" prefWidth="200.0" style="-fx-border-color: #0bd67b; -fx-background-color: rgb(30, 218, 102,0.1);">
+                           <children>
+                              <Label layoutX="12.0" layoutY="4.0" style="-fx-text-fill: #0c7221;" text="Total earnings" textFill="#0c7221">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="28.0" text="GHS">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="totalEarningsLabel" layoutX="74.0" layoutY="28.0" text="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="294.0" layoutY="357.0" prefHeight="64.0" prefWidth="200.0" style="-fx-border-color: #e41704; -fx-background-color: rgb(226, 19, 19,0.1);">
+                           <children>
+                              <Label layoutX="20.0" layoutY="1.0" style="-fx-text-fill: #b90c0c;" text="Total Deduction" textFill="#b90c0c">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="27.0" text="GHS">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="totalDeductionLabel" layoutX="89.0" layoutY="28.0" text="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="573.0" layoutY="357.0" prefHeight="64.0" prefWidth="200.0" style="-fx-border-color: blue; -fx-background-color: rgb(79, 13, 202,0.1);">
+                           <children>
+                              <Label layoutX="8.0" layoutY="3.0" style="-fx-text-fill: #0c309e;" text="Net Pay" textFill="#0c309e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="8.0" layoutY="29.0" text="GHS">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="netPayLabel" layoutX="77.0" layoutY="30.0" text="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="generatePaySlipButton" layoutX="631.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleGeneratePaySlip" prefHeight="30.0" prefWidth="137.0" style="-fx-background-radius: 5px; -fx-background-color: blue;" text="Generate PaySlip" />
+                        <Label layoutX="354.0" layoutY="171.0" text="Employee ID" />
+                        <TextField fx:id="employeeIDField" editable="false" layoutX="338.0" layoutY="189.0" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: gray;" />
+                        <TextField fx:id="empid" editable="false" layoutX="356.0" layoutY="245.0" prefHeight="26.0" prefWidth="72.0" visible="false" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="previewforms" layoutX="-6.0" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="768.0" style="-fx-background-radius: 20px; -fx-background-color: white;" visible="false">
@@ -722,7 +819,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="14.0" layoutY="105.0" prefHeight="35.0" prefWidth="385.0" promptText="Search Employee" style="-fx-padding: 0 0 0 28px;" />
+                  <TextField fx:id="searchField" layoutX="14.0" layoutY="105.0" prefHeight="35.0" prefWidth="385.0" promptText="Search Employee" style="-fx-padding: 0 0 0 28px;" />
                   <TableView fx:id="allDataTable" layoutX="13.0" layoutY="161.0" prefHeight="304.0" prefWidth="742.0">
                      <columns>
                         <TableColumn fx:id="allDataID" prefWidth="81.038938164711" text="ID" />
@@ -733,7 +830,7 @@
                         <TableColumn fx:id="allDataactivites" prefWidth="132.0" text="Activities" />
                      </columns>
                   </TableView>
-                  <FontIcon iconLiteral="fas-search" layoutX="17.0" layoutY="127.0" />
+                  <FontIcon iconLiteral="fas-search" layoutX="23.0" layoutY="127.0" AnchorPane.topAnchor="117.0" />
                </children>
                <effect>
                   <DropShadow />
@@ -764,18 +861,6 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Text>
-                  <MenuButton alignment="CENTER" blendMode="MULTIPLY" cache="true" contentDisplay="TOP" layoutX="38.0" layoutY="126.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #FAFAFA;" stylesheets="@../../Downloads/login.css" text="Select report type" textFill="#170101">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                     </items>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </MenuButton>
                   <DatePicker layoutX="476.0" layoutY="123.0" opacity="0.47" prefHeight="30.0" prefWidth="200.0" showWeekNumbers="true" />
                   <Button layoutX="602.0" layoutY="180.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" style="-fx-background-color: #2563EB; -fx-background-radius: 5px;" text="Generate Report" textFill="WHITE">
                      <font>

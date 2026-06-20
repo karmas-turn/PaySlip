@@ -7,7 +7,7 @@ public class database {
    
   public static Connection connectdb(){
     try  {
-      Class.forName("com.mysql.jdbc.Driver");
+      Class.forName("com.mysql.cj.jdbc.Driver");
 
       Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/payslip_db", "root", "");
         return connect;

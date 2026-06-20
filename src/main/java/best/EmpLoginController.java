@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -31,8 +33,8 @@ public class EmpLoginController {
     private PreparedStatement prepare;
     private ResultSet result;
 
-    public void loginEmp(){
-        String sql = "SELECT email, password FROM employees WHERE email = ? and password = ? ";
+    public void loginEmp() throws IOException {
+        String sql = "SELECT e.id,e.employee_id,d.id as department_id,e.position, e.full_name,e.email, e.password, d.name as department FROM employees e JOIN departments d ON e.department_id = d.id WHERE email = ? and password = ? ";
         connect = database.connectdb();
 
         try  {
@@ -41,6 +43,7 @@ public class EmpLoginController {
             prepare.setString(2, password.getText());
 
             result = prepare.executeQuery();
+
             Alert alert;
             if (email.getText().isEmpty() || password.getText().isEmpty()){
                 alert = new Alert(AlertType.ERROR);
@@ -51,7 +54,11 @@ public class EmpLoginController {
             }
             else{
                 if (result.next()) {
-                getData.username = email.getText();
+                getData.username = result.getString("full_name");
+                getData.employeeId = result.getInt("id");
+                getData.department = result.getString("department");
+                getData.position = result.getString("position");
+                getData.employeeID = result.getString("employee_id");
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
@@ -69,11 +76,13 @@ public class EmpLoginController {
                  
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
            
         }
 
     }
+
+
 
      @FXML
     private void GoBack() throws IOException {

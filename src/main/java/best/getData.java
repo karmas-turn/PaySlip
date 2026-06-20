@@ -2,5 +2,8 @@ package best;
 
 public class getData {
   public static String username;
-  public static String path;
+  public static int employeeId;
+  public static String employeeID;
+  public static String department;
+  public static String position;
 }

@@ -65,6 +65,10 @@ public class employeeData {
 
     public String    getStatus()          { return status; }
     public void      setStatus(String v)  { this.status = v; }
+    @Override
+    public String toString() {
+        return this.fullName; // Or whatever field holds the full name string
+    }
 
 
 }
