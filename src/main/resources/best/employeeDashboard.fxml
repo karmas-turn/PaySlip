@@ -3,8 +3,10 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -21,7 +23,7 @@
                </font>
             </Text>
             <FontIcon iconColor="WHITE" iconLiteral="fas-money-bill" iconSize="24" layoutX="14.0" layoutY="48.0" />
-            <Button fx:id="homeBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Dashboard" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+            <Button fx:id="homeBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);" text="Dashboard" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fas-home" />
                </graphic>
@@ -32,18 +34,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="paybtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="My PaySlip" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fas-receipt" />
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="profileBtn" alignment="CENTER" graphicTextGap="7.0" layoutX="10.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Profile" textFill="WHITE">
+            <Button fx:id="profileBtn" alignment="CENTER" graphicTextGap="7.0" layoutX="10.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchforms" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Profile" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -67,7 +58,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="payslipforms" layoutX="218.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="768.0" style="-fx-background-radius: 20px; -fx-background-color: white;">
+      <AnchorPane fx:id="payslipforms" layoutX="218.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="768.0" style="-fx-background-radius: 20px; -fx-background-color: white;" visible="false">
          <effect>
             <DropShadow radius="10.7325" width="23.93" />
          </effect>
@@ -133,10 +124,13 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="394.0" layoutY="440.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="208.0" style="-fx-background-color: BLUE;" text="    Download PDF" textFill="#fbf9f9">
+            <Button layoutX="384.0" layoutY="440.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="208.0" style="-fx-background-color: BLUE;" text="    Download PDF" textFill="#fbf9f9">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
+               </font>
+               <graphic>
+                  <FontIcon fill="#f4efef" iconLiteral="fas-download" wrappingWidth="12.66668701171875" />
+               </graphic></Button>
             <AnchorPane layoutX="416.0" layoutY="57.0" prefHeight="104.0" prefWidth="333.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 10px;">
                <children>
                   <Text layoutX="26.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Total Earnings">
@@ -227,7 +221,6 @@
                </children>
             </AnchorPane>
             <FontIcon fill="#0911f4" iconLiteral="fas-print" layoutX="200.0" layoutY="459.0" wrappingWidth="14.134536873302636" />
-            <FontIcon fill="#f4efef" iconLiteral="fas-download" layoutX="438.0" layoutY="458.0" wrappingWidth="12.66668701171875" />
             <AnchorPane layoutX="9.0" layoutY="70.0" prefHeight="146.0" prefWidth="342.0">
                <children>
                   <Text layoutX="35.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaySlip">
@@ -261,6 +254,11 @@
                   <Label fx:id="payEmpPosition" layoutX="189.0" layoutY="114.0" text="EmpName" />
                </children>
             </AnchorPane>
+            <Button fx:id="backBtn" graphicTextGap="10.0" layoutX="618.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchforms" style="-fx-background-color: white; -fx-text-fill: blue; -fx-border-color: blue; -fx-background-radius: 8px;" text="Go Back">
+               <graphic>
+                  <FontIcon fill="#1c47d7" iconLiteral="fas-arrow-left" iconSize="16" selectionFill="#3115ae" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="dashboard" layoutX="214.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="776.0" style="-fx-background-color: white; -fx-background-radius: 8px;" visible="false">
@@ -270,7 +268,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Label fx:id="usernameLabel" layoutX="134.0" layoutY="18.0" text="Ama Mensah" AnchorPane.topAnchor="19.0">
+            <Label fx:id="usernameLabel" layoutX="116.0" layoutY="18.0" text="Ama Mensah" AnchorPane.topAnchor="18.0">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -285,7 +283,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Text>
-                  <Label fx:id="salaryLabel" layoutX="67.0" layoutY="55.0" text="850" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="55.0">
+                  <Label fx:id="salaryLabel" layoutX="59.0" layoutY="55.0" text="850" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="55.0">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>
@@ -302,7 +300,7 @@
                   <DropShadow height="16.32" radius="7.075" width="13.98" />
                </effect>
                <children>
-                  <Label fx:id="allowanceLabel" layoutX="67.0" layoutY="53.0" text="850" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="53.0">
+                  <Label fx:id="allowanceLabel" layoutX="63.0" layoutY="53.0" text="850" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="53.0">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>
@@ -323,7 +321,7 @@
                   <DropShadow height="16.32" radius="7.075" width="13.98" />
                </effect>
                <children>
-                  <Label fx:id="totalDeductionLabel" layoutX="67.0" layoutY="52.0" text="850" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="52.0">
+                  <Label fx:id="totalDeductionLabel" layoutX="59.0" layoutY="52.0" text="850" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>
@@ -344,7 +342,7 @@
                   <DropShadow height="16.32" radius="7.075" width="13.98" />
                </effect>
                <children>
-                  <Label fx:id="netPayLabel" layoutX="67.0" layoutY="52.0" text="850" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="52.0">
+                  <Label fx:id="netPayLabel" layoutX="57.0" layoutY="52.0" text="850" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>
@@ -384,6 +382,111 @@
          <effect>
             <DropShadow />
          </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="settingforms" layoutX="225.0" layoutY="23.0" prefHeight="474.0" prefWidth="759.0" style="-fx-background-color: white; -fx-background-radius: 8px;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Text fill="#16034a" layoutX="27.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" wrappingWidth="137.103515625">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#616161" layoutX="27.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings / Profile" wrappingWidth="137.103515625" />
+            <AnchorPane id="but2" fx:id="changePasswordForms" layoutX="225.0" layoutY="27.0" prefHeight="383.0" prefWidth="431.0" style="-fx-background-color: white; -fx-background-radius: 10 10 10 10;" styleClass="but2" stylesheets="@login.css" visible="false">
+               <effect>
+                  <DropShadow height="12.21" radius="4.8725000000000005" width="9.28" />
+               </effect>
+               <children>
+                  <Text fill="#3c04e4" layoutX="107.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHANGE PASSWORD">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="57.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Old Password" wrappingWidth="111.0" AnchorPane.leftAnchor="57.0" />
+                  <Text layoutX="57.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New password" wrappingWidth="125.32421875" AnchorPane.leftAnchor="57.0" />
+                  <Text layoutX="57.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cofirm new password" wrappingWidth="136.025390625" AnchorPane.leftAnchor="57.0" />
+                  <Button layoutX="104.0" layoutY="294.0" mnemonicParsing="false" onAction="#handlePasswordResetSubmit" prefHeight="39.0" prefWidth="206.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" stylesheets="@login.css" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="104.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fas-sync" />
+                     </graphic>
+                  </Button>
+                  <PasswordField fx:id="oldPasswordField" layoutX="57.0" layoutY="86.0" prefHeight="35.0" prefWidth="250.0" promptText="Old password ......" />
+                  <PasswordField fx:id="newPasswordField" layoutX="57.0" layoutY="157.0" prefHeight="35.0" prefWidth="250.0" promptText="New password ......" />
+                  <PasswordField fx:id="confirmNewPasswordField" layoutX="57.0" layoutY="231.0" prefHeight="35.0" prefWidth="250.0" promptText="Confirm new password ......" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="profileBtn1" graphicTextGap="6.0" layoutX="16.0" layoutY="114.0" mnemonicParsing="false" onAction="#switchSetting" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white; -fx-text-fill: blue;" text="Profile" textFill="#16034a">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow height="18.07" radius="9.2675" />
+               </effect>
+               <graphic>
+                  <FontIcon iconColor="BLUE" iconLiteral="fas-user-circle" />
+               </graphic>
+            </Button>
+            <Button fx:id="chnagePasswordBtn" graphicTextGap="6.0" layoutX="16.0" layoutY="198.0" mnemonicParsing="false" onAction="#switchSetting" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white; -fx-text-fill: blue;" text="Change Password" textFill="#16034a">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <FontIcon iconColor="BLUE" iconLiteral="fas-lock" />
+               </graphic>
+               <effect>
+                  <DropShadow height="18.07" radius="9.2675" />
+               </effect>
+            </Button>
+            <AnchorPane id="but2" fx:id="profileforms" layoutX="234.0" layoutY="30.0" prefHeight="312.0" prefWidth="431.0" style="-fx-background-color: white; -fx-background-radius: 10 10 10 10;" styleClass="but2" stylesheets="@login.css">
+               <effect>
+                  <DropShadow height="12.21" radius="4.8725000000000005" width="9.28" />
+               </effect>
+               <children>
+                  <Text fill="#3c04e4" layoutX="104.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Information">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="53.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" wrappingWidth="72.443359375" AnchorPane.leftAnchor="53.0" />
+                  <Text layoutX="50.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="125.32421875" AnchorPane.leftAnchor="53.0" />
+                  <Button graphicTextGap="8.0" layoutX="92.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleUserDetailsSubmit" prefHeight="39.0" prefWidth="206.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" stylesheets="@login.css" text="Update Profile" textFill="WHITE" AnchorPane.leftAnchor="92.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fas-sync" />
+                     </graphic>
+                  </Button>
+                  <TextField fx:id="fullNameField" layoutX="53.0" layoutY="82.0" prefHeight="35.0" prefWidth="266.0" AnchorPane.leftAnchor="53.0">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="emailField" layoutX="42.0" layoutY="156.0" prefHeight="35.0" prefWidth="266.0" AnchorPane.leftAnchor="53.0">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>

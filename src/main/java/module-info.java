@@ -5,7 +5,7 @@ module best {
     requires java.sql;
     requires org.kordamp.ikonli.fontawesome6;
     // MySQL connector is provided on the classpath; remove automatic module require
-    
+
 
 
 

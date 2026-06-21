@@ -59,6 +59,8 @@ public class EmpLoginController {
                 getData.department = result.getString("department");
                 getData.position = result.getString("position");
                 getData.employeeID = result.getString("employee_id");
+                getData.password = result.getString("password");
+                getData.email = result.getString("email");
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
@@ -77,7 +79,7 @@ public class EmpLoginController {
             }
 
         } catch (SQLException e) {
-           
+            e.printStackTrace();
         }
 
     }

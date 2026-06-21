@@ -107,8 +107,7 @@ public class adminDashboardController implements Initializable {
     @FXML
     private TextField position;
 
-    @FXML
-    private Button reportBtn;
+   
 
     @FXML
     private TextField basic_salary;
@@ -157,6 +156,18 @@ public class adminDashboardController implements Initializable {
     
     @FXML
     private AnchorPane previewforms;
+
+    @FXML
+    private AnchorPane profileforms;
+
+    @FXML
+    private AnchorPane changePasswordForms;
+
+    @FXML
+    private Button profileBtn1;
+
+    @FXML
+    private Button chnagePasswordBtn;
     
     @FXML
     private AnchorPane firstpre;
@@ -164,8 +175,7 @@ public class adminDashboardController implements Initializable {
     @FXML
     private AnchorPane settingforms;
     
-    @FXML
-    private AnchorPane reportforms;
+  
     
     @FXML
     private PasswordField password;
@@ -215,6 +225,24 @@ public class adminDashboardController implements Initializable {
     private TextField employeeIDField;
   @FXML
     private TextField empid;
+
+    @FXML
+    private PasswordField confirmNewPasswordField;
+
+    @FXML
+    private PasswordField newPasswordField;
+
+    @FXML
+    private PasswordField oldPasswordField;
+
+     @FXML
+    private TextField emailField;
+
+    @FXML
+    private TextField fullNameField;
+
+
+    
     
     //DATABASE 
     private Connection connect;
@@ -222,6 +250,30 @@ public class adminDashboardController implements Initializable {
     private PreparedStatement prepare;
     private ResultSet result;
 
+
+
+    @FXML
+    void switchSetting(ActionEvent event){
+          if(event.getSource() == profileBtn1){
+            profileforms.setVisible(true);
+            changePasswordForms.setVisible(false);
+
+            profileBtn1.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);;");
+            chnagePasswordBtn.setStyle("-fx-background-color: white");
+          }
+          else if(event.getSource() == chnagePasswordBtn){
+            profileforms.setVisible(false);
+            changePasswordForms.setVisible(true);
+
+            chnagePasswordBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);;");
+            profileBtn1.setStyle("-fx-background-color: white");
+          }
+    }
+
+    public void DisplayName(){
+      fullNameField.setText(getData.username);
+      emailField.setText(getData.email);
+    }
     //This function helps switch in between the forms
     @FXML 
   void switchform (ActionEvent event) {
@@ -233,15 +285,14 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(false);
-      reportforms.setVisible(false);
+      
 
 
       homeBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       empBtn.setStyle("-fx-background-color: transparent;");
       payBtn.setStyle("-fx-background-color: transparent;");
-      reportBtn.setStyle("-fx-background-color: transparent;");
       settingBtn.setStyle("-fx-background-color: transparent;");
-      reportBtn.setStyle("-fx-background-color: transparent;");
+    
       directBtn.setStyle("-fx-background-color: transparent;");
 
       
@@ -253,13 +304,11 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(false);
-      reportforms.setVisible(false);
-      
+     
       empBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
       payBtn.setStyle("-fx-background-color: transparent;");
       settingBtn.setStyle("-fx-background-color: transparent;");
-      reportBtn.setStyle("-fx-background-color: transparent;");
       directBtn.setStyle("-fx-background-color: transparent;");
 
     }
@@ -270,13 +319,12 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(false);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(true);
-      reportforms.setVisible(false);
-
+      
       directBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
       payBtn.setStyle("-fx-background-color: transparent;");
       settingBtn.setStyle("-fx-background-color: transparent;");
-      reportBtn.setStyle("-fx-background-color: transparent;");
+     
       empBtn.setStyle("-fx-background-color: transparent;");
 
       
@@ -287,48 +335,31 @@ public class adminDashboardController implements Initializable {
       payslipforms.setVisible(true);
       settingforms.setVisible(false);
       empdirectoryforms.setVisible(false);
-      reportforms.setVisible(false);
+      
 
       payBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
       empBtn.setStyle("-fx-background-color: transparent;");
       settingBtn.setStyle("-fx-background-color: transparent;");
-      reportBtn.setStyle("-fx-background-color: transparent;");
-      directBtn.setStyle("-fx-background-color: transparent;");
+       directBtn.setStyle("-fx-background-color: transparent;");
 
 
 
   }
-    else if (event.getSource() == reportBtn){
-      homeform.setVisible(false);
-      empforms.setVisible(false);
-      payslipforms.setVisible(false);
-      settingforms.setVisible(false);
-      empdirectoryforms.setVisible(false);
-      reportforms.setVisible(true);
-
-      reportBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
-      homeBtn.setStyle("-fx-background-color: transparent;");
-      empBtn.setStyle("-fx-background-color: transparent;");
-      payBtn.setStyle("-fx-background-color: transparent;");
-      settingBtn.setStyle("-fx-background-color: transparent;");
-      directBtn.setStyle("-fx-background-color: transparent;");
-
-
-    }
+    
     else if (event.getSource() == settingBtn){
        homeform.setVisible(false);
       empforms.setVisible(false);
       payslipforms.setVisible(false);
       settingforms.setVisible(true);
       empdirectoryforms.setVisible(false);
-      reportforms.setVisible(false);
+      
 
       settingBtn.setStyle("-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);");
       homeBtn.setStyle("-fx-background-color: transparent;");
       empBtn.setStyle("-fx-background-color: transparent;");
       payBtn.setStyle("-fx-background-color: transparent;");
-      reportBtn.setStyle("-fx-background-color: transparent;");
+      
       directBtn.setStyle("-fx-background-color: transparent;");
 
       
@@ -345,6 +376,7 @@ public class adminDashboardController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle args){
       try {
+        DisplayName();
         loadStats();
         addEmployeeShowList();
         showemployeeList();
@@ -566,7 +598,7 @@ public class adminDashboardController implements Initializable {
                 payslipforms.setVisible(false);
                 settingforms.setVisible(false);
                 empdirectoryforms.setVisible(false);
-                reportforms.setVisible(false);
+               
                 populateEmployeeForm(employee);
                 
               }
@@ -1100,6 +1132,159 @@ public class adminDashboardController implements Initializable {
       previewforms.setVisible(true);
     }
     
+
+   
+public boolean changePassword(int employeeId, String enteredOldPassword, String enteredNewPassword) {
+    connect = database.connectdb();
+    
+    // Step 1: Verify the old password matches the database
+    String verificationSql = "SELECT password FROM admins WHERE id = ?";
+    try {
+        prepare = connect.prepareStatement(verificationSql);
+        prepare.setInt(1, employeeId);
+        result = prepare.executeQuery();
+        
+        if (result.next()) {
+            String dbPassword = result.getString("password");
+            
+            // Check if entered old password matches what's in the database
+            // Note: If you use encryption (like BCrypt), use BCrypt.checkpw(enteredOldPassword, dbPassword) here instead
+            if (!dbPassword.equals(enteredOldPassword)) {
+                showAlert(AlertType.ERROR, "Validation Error", "The old password you entered is incorrect.");
+                return false;
+            }
+        } else {
+            showAlert(AlertType.ERROR, "Error", "Employee account not found.");
+            return false;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    } finally {
+        closeResources();
+    }
+
+    // Step 2: Update to the new password
+    String updateSql = "UPDATE admins SET password = ? WHERE id = ?";
+    try {
+        connect = database.connectdb();
+        prepare = connect.prepareStatement(updateSql);
+        prepare.setString(1, enteredNewPassword); // Hash this in production!
+        prepare.setInt(2, employeeId);
+        
+        int rowsUpdated = prepare.executeUpdate();
+        return rowsUpdated > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        showAlert(AlertType.ERROR, "Database Error", "Failed to update password.");
+        return false;
+    } finally {
+        closeResources();
+    }
+}
+
+@FXML
+private void handleUserDetailsSubmit(ActionEvent event){
+    String Fullname = fullNameField.getText();
+    String email = emailField.getText();
+    
+    if(Fullname.isEmpty()|| email.isEmpty()){
+        showAlert(AlertType.ERROR, "Validation Error", "All fields must be filled");
+        return;
+    }
+    
+    int currentEmpId = getData.employeeId;
+    boolean updateSuccessful = changeUserData(currentEmpId, Fullname, email);
+    
+    if(updateSuccessful){
+        showAlert(AlertType.INFORMATION, "Success", "Successfully updated user details");
+    }
+}
+
+@FXML
+private void handlePasswordResetSubmit(ActionEvent event) {
+    String oldPassword = oldPasswordField.getText();
+    String newPassword = newPasswordField.getText();
+    String confirmNewPassword = confirmNewPasswordField.getText();
+
+    // 1. Check for empty fields
+    if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
+        showAlert(AlertType.ERROR, "Validation Error", "All fields must be filled out.");
+        return;
+    }
+
+    // 2. Check if the two new passwords match each other
+    if (!newPassword.equals(confirmNewPassword)) {
+        showAlert(AlertType.ERROR, "Validation Error", "New password confirmation does not match.");
+        return;
+    }
+    
+    // 3. Optional: Enforce password strength minimum length
+    if (newPassword.length() < 6) {
+        showAlert(AlertType.ERROR, "Validation Error", "New password must be at least 6 characters long.");
+        return;
+    }
+
+    // 4. Run database operation using global session data
+    int currentEmpId = getData.employeeId; 
+    
+    boolean updateSuccessful = changePassword(currentEmpId, oldPassword, newPassword);
+    
+    if (updateSuccessful) {
+        showAlert(AlertType.INFORMATION, "Success", "Your password has been changed successfully!");
+        
+        // Clear UI inputs for security
+        oldPasswordField.clear();
+        newPasswordField.clear();
+        confirmNewPasswordField.clear();
+    }
+}
+
+public boolean changeUserData(int employeeId, String enteredFullName, String enteredEmail) {
+
+connect = database.connectdb();
+    
+    // Step 1: Update to the new userdetails
+    String updateSql = "UPDATE admins SET full_name = ? ,email = ? WHERE id = ?";
+    try {
+        connect = database.connectdb();
+        prepare = connect.prepareStatement(updateSql);
+        prepare.setString(1, enteredFullName); 
+        prepare.setString(2,enteredEmail);
+        prepare.setInt(3, employeeId);
+        
+        int rowsUpdated = prepare.executeUpdate();
+        return rowsUpdated > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        showAlert(AlertType.ERROR, "Database Error", "Failed to update details.");
+        return false;
+    } finally {
+        closeResources();
+    }
+
+}
+
+// Quick helper to close DB connections safely
+private void closeResources() {
+    try {
+        if (result != null) result.close();
+        if (prepare != null) prepare.close();
+        if (connect != null) connect.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+  // Global alert utility method
+private void showAlert(AlertType type, String title, String content) {
+    Alert alert = new Alert(type);
+    alert.setTitle(title);
+    alert.setHeaderText(null);
+    alert.setContentText(content);
+    alert.showAndWait();
+}
+
 
     //This helps out to logout
     @FXML

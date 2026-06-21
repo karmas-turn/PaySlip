@@ -13,7 +13,6 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -30,7 +29,7 @@
                      </font>
                   </Text>
                   <FontIcon iconColor="WHITE" iconLiteral="fas-money-bill" iconSize="24" layoutX="14.0" layoutY="48.0" />
-                  <Button fx:id="homeBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchform" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Home" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                  <Button fx:id="homeBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchform" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(to left, #3a28ff, #736ad3);" text="Home" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                      <graphic>
                         <FontIcon iconColor="WHITE" iconLiteral="fas-home" />
                      </graphic>
@@ -85,18 +84,7 @@
                         <FontIcon iconColor="WHITE" iconLiteral="fas-sign-out-alt" />
                      </graphic>
                   </Button>
-                  <Button fx:id="reportBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#switchform" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Reports" textFill="WHITE">
-                     <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="fas-chart-bar" />
-                     </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="settingBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="374.0" mnemonicParsing="false" onAction="#switchform" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Settings" textFill="WHITE">
+                  <Button fx:id="settingBtn" alignment="CENTER" graphicTextGap="6.0" layoutX="10.0" layoutY="330.0" mnemonicParsing="false" onAction="#switchform" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: none;" text="Settings" textFill="WHITE">
                      <graphic>
                         <FontIcon iconColor="WHITE" iconLiteral="fas-cog" />
                      </graphic>
@@ -228,7 +216,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="homeform" layoutX="224.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-radius: 10px; -fx-background-color: white;" stylesheets="@login.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <AnchorPane fx:id="homeform" layoutX="224.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-radius: 10px; -fx-background-color: white;" stylesheets="@login.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <effect>
                   <DropShadow radius="10.7325" width="23.93" />
                </effect>
@@ -332,7 +320,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="payslipforms" layoutX="207.0" layoutY="13.0" prefHeight="465.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 5px;">
+            <AnchorPane fx:id="payslipforms" layoutX="207.0" layoutY="13.0" prefHeight="465.0" prefWidth="791.0" style="-fx-background-color: white; -fx-background-radius: 5px;" visible="false">
                <children>
                   <AnchorPane fx:id="firstpre" layoutY="3.0" prefHeight="474.0" prefWidth="782.0">
                      <children>
@@ -727,45 +715,36 @@
                      </font>
                   </Text>
                   <Text fill="#616161" layoutX="27.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings / Profile" wrappingWidth="137.103515625" />
-                  <AnchorPane id="but2" layoutX="225.0" layoutY="27.0" prefHeight="414.0" prefWidth="503.0" style="-fx-background-color: white; -fx-background-radius: 10 10 10 10;" styleClass="but2" stylesheets="@login.css">
+                  <AnchorPane id="but2" fx:id="changePasswordForms" layoutX="225.0" layoutY="27.0" prefHeight="383.0" prefWidth="431.0" style="-fx-background-color: white; -fx-background-radius: 10 10 10 10;" styleClass="but2" stylesheets="@login.css" visible="false">
                      <effect>
                         <DropShadow height="12.21" radius="4.8725000000000005" width="9.28" />
                      </effect>
                      <children>
-                        <Text fill="#16034a" layoutX="32.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Information">
+                        <Text fill="#3c04e4" layoutX="107.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHANGE PASSWORD">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <Text layoutX="53.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" wrappingWidth="72.443359375" AnchorPane.leftAnchor="53.0" />
-                        <Text layoutX="50.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="125.32421875" AnchorPane.leftAnchor="53.0" />
-                        <Text layoutX="48.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" wrappingWidth="81.10351562500003" AnchorPane.leftAnchor="53.0" />
-                        <Button layoutX="50.0" layoutY="290.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="206.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" stylesheets="@login.css" text="Update Profile" textFill="WHITE" AnchorPane.leftAnchor="53.0">
+                        <Text layoutX="57.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Old Password" wrappingWidth="111.0" AnchorPane.leftAnchor="57.0" />
+                        <Text layoutX="57.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New password" wrappingWidth="125.32421875" AnchorPane.leftAnchor="57.0" />
+                        <Text layoutX="57.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cofirm new password" wrappingWidth="136.025390625" AnchorPane.leftAnchor="57.0" />
+                        <Button layoutX="104.0" layoutY="294.0" mnemonicParsing="false" onAction="#handlePasswordResetSubmit" prefHeight="39.0" prefWidth="206.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" stylesheets="@login.css" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="104.0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <graphic>
+                              <FontIcon iconColor="WHITE" iconLiteral="fas-sync" />
+                           </graphic>
                         </Button>
-                        <TextField layoutX="53.0" layoutY="82.0" prefHeight="35.0" prefWidth="266.0" text="Admin User" AnchorPane.leftAnchor="53.0">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </TextField>
-                        <TextField layoutX="42.0" layoutY="156.0" prefHeight="35.0" prefWidth="266.0" text="admin@payslip.com" AnchorPane.leftAnchor="53.0">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </TextField>
-                        <TextField layoutX="42.0" layoutY="230.0" prefHeight="35.0" prefWidth="266.0" text="0241234567" AnchorPane.leftAnchor="53.0">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </TextField>
+                        <PasswordField fx:id="oldPasswordField" layoutX="57.0" layoutY="86.0" prefHeight="35.0" prefWidth="250.0" promptText="Old password ......" />
+                        <PasswordField fx:id="newPasswordField" layoutX="57.0" layoutY="157.0" prefHeight="35.0" prefWidth="250.0" promptText="New password ......" />
+                        <PasswordField fx:id="confirmNewPasswordField" layoutX="57.0" layoutY="231.0" prefHeight="35.0" prefWidth="250.0" promptText="Confirm new password ......" />
                      </children>
                   </AnchorPane>
-                  <Button graphicTextGap="6.0" layoutX="16.0" layoutY="114.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white; -fx-text-fill: blue;" text="Profile" textFill="#16034a">
+                  <Button fx:id="profileBtn1" graphicTextGap="6.0" layoutX="16.0" layoutY="114.0" mnemonicParsing="false" onAction="#switchSetting" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to left,  #8c86ce, #bfbce7); -fx-text-fill: blue;" text="Profile" textFill="#16034a">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -775,8 +754,11 @@
                      <effect>
                         <DropShadow height="18.07" radius="9.2675" />
                      </effect>
+                     <graphic>
+                        <FontIcon iconColor="BLUE" iconLiteral="fas-user-circle" />
+                     </graphic>
                   </Button>
-                  <Button graphicTextGap="6.0" layoutX="16.0" layoutY="198.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white; -fx-text-fill: blue;" text="Change Password" textFill="#16034a">
+                  <Button fx:id="chnagePasswordBtn" graphicTextGap="6.0" layoutX="16.0" layoutY="198.0" mnemonicParsing="false" onAction="#switchSetting" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white; -fx-text-fill: blue;" text="Change Password" textFill="#16034a">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -790,21 +772,41 @@
                         <DropShadow height="18.07" radius="9.2675" />
                      </effect>
                   </Button>
-                  <Button graphicTextGap="6.0" layoutX="16.0" layoutY="275.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="160.0" style="-fx-background-color: white; -fx-text-fill: blue;" text="System Settings" textFill="#16034a">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <FontIcon iconColor="BLUE" iconLiteral="fas-cog" />
-                     </graphic>
+                  <AnchorPane id="but2" fx:id="profileforms" layoutX="234.0" layoutY="30.0" prefHeight="312.0" prefWidth="431.0" style="-fx-background-color: white; -fx-background-radius: 10 10 10 10;" styleClass="but2" stylesheets="@login.css">
                      <effect>
-                        <DropShadow height="18.07" radius="9.2675" />
+                        <DropShadow height="12.21" radius="4.8725000000000005" width="9.28" />
                      </effect>
-                  </Button>
-                  <FontIcon iconColor="BLUE" iconLiteral="fas-user-circle" layoutX="57.0" layoutY="148.0" />
+                     <children>
+                        <Text fill="#3c04e4" layoutX="104.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Information">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="53.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" wrappingWidth="72.443359375" AnchorPane.leftAnchor="53.0" />
+                        <Text layoutX="50.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="125.32421875" AnchorPane.leftAnchor="53.0" />
+                        <Button graphicTextGap="8.0" layoutX="92.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleUserDetailsSubmit" prefHeight="39.0" prefWidth="206.0" style="-fx-background-color: blue; -fx-background-radius: 5px;" stylesheets="@login.css" text="Update Profile" textFill="WHITE" AnchorPane.leftAnchor="92.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <FontIcon iconColor="WHITE" iconLiteral="fas-sync" />
+                           </graphic>
+                        </Button>
+                        <TextField fx:id="fullNameField" layoutX="53.0" layoutY="82.0" prefHeight="35.0" prefWidth="266.0" text="Admin User" AnchorPane.leftAnchor="53.0">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="emailField" layoutX="42.0" layoutY="156.0" prefHeight="35.0" prefWidth="266.0" text="admin@payslip.com" AnchorPane.leftAnchor="53.0">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="empdirectoryforms" layoutX="216.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="768.0" style="-fx-background-color: white; -fx-background-radius: 8px;" visible="false">
@@ -831,47 +833,6 @@
                      </columns>
                   </TableView>
                   <FontIcon iconLiteral="fas-search" layoutX="23.0" layoutY="127.0" AnchorPane.topAnchor="117.0" />
-               </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </AnchorPane>
-            <AnchorPane fx:id="reportforms" layoutX="210.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="780.0" style="-fx-background-color: white; -fx-background-radius: 8px;" visible="false">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f0f0" height="149.0" layoutX="18.0" layoutY="77.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.1" width="742.0" />
-                  <DatePicker layoutX="219.0" layoutY="123.0" opacity="0.47" prefHeight="30.0" prefWidth="200.0" showWeekNumbers="true" />
-                  <Text layoutX="19.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports   " wrappingWidth="95.0" AnchorPane.leftAnchor="19.0">
-                     <font>
-                        <Font name="System Bold" size="19.0" />
-                     </font>
-                  </Text>
-                  <Text fill="GREY" layoutX="19.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports / Overview" wrappingWidth="116.5367431640625" />
-                  <Text layoutX="40.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report Type" wrappingWidth="95.0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="219.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From Date" wrappingWidth="95.0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="479.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To Date" wrappingWidth="95.0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <DatePicker layoutX="476.0" layoutY="123.0" opacity="0.47" prefHeight="30.0" prefWidth="200.0" showWeekNumbers="true" />
-                  <Button layoutX="602.0" layoutY="180.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" style="-fx-background-color: #2563EB; -fx-background-radius: 5px;" text="Generate Report" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Text layoutX="18.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports Summary  " wrappingWidth="169.40000915527344" AnchorPane.leftAnchor="19.0">
-                     <font>
-                        <Font name="System Bold" size="17.0" />
-                     </font>
-                  </Text>
                </children>
                <effect>
                   <DropShadow />

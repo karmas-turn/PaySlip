@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS employees (
 CREATE TABLE IF NOT EXISTS payslips (
     id               INT           AUTO_INCREMENT PRIMARY KEY,
     employee_id      INT           NOT NULL,
-    pay_period_month INT           NOT NULL,   -- 1-12
+    pay_period_month VARCHAR          NOT NULL,   -- 1-12
     pay_period_year  INT           NOT NULL,
     basic_salary     DECIMAL(12,2) NOT NULL,
     allowance        DECIMAL(12,2) DEFAULT 0.00,

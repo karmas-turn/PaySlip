@@ -52,6 +52,10 @@ public class AdminLoginController {
             }
             else{
                 if (result.next()) {
+                getData.username = result.getString("full_name");
+                getData.email = result.getString("email");
+                getData.password = result.getString("password");
+                getData.employeeId =result.getInt("id");
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
